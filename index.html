@@ -185,6 +185,33 @@
     }
     .price-card { cursor: pointer; transition: all 0.3s; }
     .price-card:hover { transform: translateY(-4px); box-shadow: 0 10px 30px rgba(26,74,46,0.2); border-color: var(--green); }
+
+    .req { color: #c0392b; }
+
+    .pay-select-grid { display: grid; grid-template-columns: 1fr; gap: 0.7rem; margin-top: 0.3rem; }
+    .pay-option {
+      display: flex; align-items: center; gap: 1rem;
+      padding: 0.9rem 1.2rem;
+      border: 2px solid #ddd; border-radius: 12px;
+      cursor: pointer; background: #fafafa;
+      transition: all 0.25s;
+    }
+    .pay-option:hover { border-color: var(--green-mid); background: rgba(26,74,46,0.04); }
+    .pay-option.selected { border-color: var(--green); background: rgba(26,74,46,0.07); box-shadow: 0 0 0 3px rgba(26,74,46,0.08); }
+    .pay-icon { width: 40px; height: 40px; border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 1.2rem; flex-shrink: 0; }
+    .pay-name { font-family: 'Playfair Display', serif; font-size: 1rem; font-weight: 700; color: var(--green); }
+    .pay-detail { font-size: 0.78rem; color: #888; margin-top: 0.1rem; }
+
+    .success-screen { display: none; text-align: center; padding: 2rem 1rem; }
+    .success-icon { font-size: 3.5rem; margin-bottom: 0.8rem; }
+    .success-title { font-family: 'Playfair Display', serif; font-size: 1.8rem; font-weight: 700; color: var(--green); margin-bottom: 1rem; }
+    .success-details { background: var(--cream); border: 1px solid var(--cream-dark); border-radius: 12px; padding: 1.2rem; margin: 1rem auto 1.5rem; max-width: 380px; text-align: left; }
+    .success-detail-row { display: flex; justify-content: space-between; padding: 0.4rem 0; border-bottom: 1px solid var(--cream-dark); font-size: 0.88rem; }
+    .success-detail-row:last-child { border-bottom: none; }
+    .success-detail-label { color: #888; }
+    .success-detail-value { font-weight: 700; color: var(--green); }
+    .success-msg { font-size: 0.95rem; color: var(--text-mid); line-height: 1.7; max-width: 460px; margin: 0 auto; }
+
   </style>
 </head>
 <body>
@@ -323,26 +350,118 @@
     
     <div id="registration"></div>
     <!-- REGISTRATION FORM -->
-    <div class="form-box">
+    <div class="form-box" id="regFormBox">
       <div class="form-title">✦ Complete Your Registration ✦</div>
-      <p style="text-align:center; color:#666; font-size:0.9rem; margin-bottom:1.5rem; font-style:italic;">Fill out the form below to secure your seat. You will receive payment instructions upon completion.</p>
+      <p style="text-align:center;color:#666;font-size:0.9rem;margin-bottom:1.5rem;font-style:italic;">Fill out the form below to secure your seat.</p>
 
-      <!-- JOTFORM EMBED -->
-      <iframe
-        id="JotFormIFrame-261407315712147"
-        title="ELICM 16th Anniversary Registration"
-        onload="window.parent.scrollTo(0,0)"
-        allowtransparency="true"
-        allow="geolocation; microphone; camera; fullscreen"
-        src="https://form.jotform.com/261407315712147"
-        frameborder="0"
-        style="min-width:100%; max-width:100%; height:700px; border:none; border-radius:12px;"
-        scrolling="yes"
-      ></iframe>
-      <script src='https://cdn.jotfor.ms/s/umd/latest/for-form-embed-handler.js'></script>
-      <script>window.jotformEmbedHandler("iframe[id='JotFormIFrame-261407315712147']", "https://form.jotform.com/")</script>
+      <div id="registrationForm">
 
-      <p class="form-note" style="margin-top:1.5rem;">After submitting, complete your payment via your selected method. Your registration is confirmed once payment is received by <strong>September 2, 2026</strong>.</p>
+        <!-- NAME -->
+        <div class="form-row">
+          <div class="form-group">
+            <label>First Name <span class="req">*</span></label>
+            <input type="text" id="firstName" placeholder="First name" />
+          </div>
+          <div class="form-group">
+            <label>Last Name <span class="req">*</span></label>
+            <input type="text" id="lastName" placeholder="Last name" />
+          </div>
+        </div>
+
+        <!-- EMAIL -->
+        <div class="form-group">
+          <label>Email Address <span class="req">*</span></label>
+          <input type="email" id="email" placeholder="your@email.com" />
+        </div>
+
+        <!-- PHONE -->
+        <div class="form-group">
+          <label>Phone Number <span class="req">*</span></label>
+          <input type="tel" id="phone" placeholder="(555) 000-0000" />
+        </div>
+
+        <!-- TICKETS -->
+        <div class="form-group">
+          <label>Select Your Tickets <span class="req">*</span></label>
+          <div class="ticket-selector">
+            <div class="ticket-option" id="adultCard" onclick="scrollToForm()">
+              <div class="ticket-type">👤 Adult</div>
+              <div class="ticket-price">$175</div>
+              <div class="ticket-note">per person</div>
+              <div class="qty-row">
+                <button class="qty-btn" onclick="event.stopPropagation();changeQty('adult',-1)">−</button>
+                <span class="qty-display" id="adultQty">0</span>
+                <button class="qty-btn" onclick="event.stopPropagation();changeQty('adult',1)">+</button>
+              </div>
+            </div>
+            <div class="ticket-option" id="childCard">
+              <div class="ticket-type">👧 Child</div>
+              <div class="ticket-price">$85</div>
+              <div class="ticket-note">under 12</div>
+              <div class="qty-row">
+                <button class="qty-btn" onclick="event.stopPropagation();changeQty('child',-1)">−</button>
+                <span class="qty-display" id="childQty">0</span>
+                <button class="qty-btn" onclick="event.stopPropagation();changeQty('child',1)">+</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- PAYMENT METHOD -->
+        <div class="form-group">
+          <label>Payment Method <span class="req">*</span></label>
+          <div class="pay-select-grid">
+            <div class="pay-option" id="pay-cashapp" onclick="selectPayment('CashApp')">
+              <div class="pay-icon" style="background:#00d632;">💵</div>
+              <div>
+                <div class="pay-name">CashApp</div>
+                <div class="pay-detail">(240) 678-4440</div>
+              </div>
+            </div>
+            <div class="pay-option" id="pay-zelle" onclick="selectPayment('Zelle')">
+              <div class="pay-icon" style="background:#6d1ed4;">💜</div>
+              <div>
+                <div class="pay-name">Zelle</div>
+                <div class="pay-detail">shirleymartin418@gmail.com</div>
+              </div>
+            </div>
+            <div class="pay-option" id="pay-plan" onclick="selectPayment('Payment Plan')">
+              <div class="pay-icon" style="background:var(--green);">📋</div>
+              <div>
+                <div class="pay-name">Payment Plan</div>
+                <div class="pay-detail">Contact Apostle Shirley</div>
+              </div>
+            </div>
+          </div>
+          <input type="hidden" id="paymentMethod" value="" />
+        </div>
+
+        <!-- DIETARY -->
+        <div class="form-group">
+          <label>Dietary Needs / Special Requests</label>
+          <textarea id="notes" placeholder="Vegan, vegetarian, accessibility needs, etc."></textarea>
+        </div>
+
+        <!-- TOTAL -->
+        <div class="total-box">
+          <span class="total-label">Registration Total</span>
+          <span class="total-amount" id="totalAmount">$0.00</span>
+        </div>
+
+        <button class="submit-btn" id="submitBtn" onclick="submitForm()">✦ Submit Registration ✦</button>
+        <p class="form-note">Registration is confirmed once payment is received by <strong>September 2, 2026</strong>.</p>
+      </div>
+
+      <!-- SUCCESS STATE -->
+      <div class="success-screen" id="successScreen">
+        <div class="success-icon">🙏</div>
+        <div class="success-title">You're Registered!</div>
+        <div class="success-details" id="successDetails"></div>
+        <p class="success-msg">
+          Please complete your payment to <b>Apostle Shirley Martin</b> before <b>September 2, 2026</b> to confirm your seat.<br/><br/>
+          <i>"Come celebrate God's faithfulness and the journey He has led us on!"</i> 💚✨
+        </p>
+      </div>
     </div>
 
 
@@ -470,6 +589,85 @@
         if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
       }, 100);
     }
+
+    let adultCount = 0, childCount = 0, selectedPayment = '';
+
+    function changeQty(type, delta) {
+      if (type === 'adult') {
+        adultCount = Math.max(0, adultCount + delta);
+        document.getElementById('adultQty').textContent = adultCount;
+        document.getElementById('adultCard').classList.toggle('active', adultCount > 0);
+      } else {
+        childCount = Math.max(0, childCount + delta);
+        document.getElementById('childQty').textContent = childCount;
+        document.getElementById('childCard').classList.toggle('active', childCount > 0);
+      }
+      updateTotal();
+    }
+
+    function updateTotal() {
+      const total = (adultCount * 175) + (childCount * 85);
+      document.getElementById('totalAmount').textContent = '$' + total.toFixed(2);
+    }
+
+    function selectPayment(method) {
+      selectedPayment = method;
+      document.getElementById('paymentMethod').value = method;
+      document.querySelectorAll('.pay-option').forEach(el => el.classList.remove('selected'));
+      const map = { 'CashApp': 'pay-cashapp', 'Zelle': 'pay-zelle', 'Payment Plan': 'pay-plan' };
+      const el = document.getElementById(map[method]);
+      if (el) el.classList.add('selected');
+    }
+
+    async function submitForm() {
+      const firstName = document.getElementById('firstName').value.trim();
+      const lastName  = document.getElementById('lastName').value.trim();
+      const email     = document.getElementById('email').value.trim();
+      const phone     = document.getElementById('phone').value.trim();
+      const notes     = document.getElementById('notes').value.trim();
+
+      if (!firstName || !lastName) { alert('Please enter your full name.'); return; }
+      if (!email) { alert('Please enter your email address.'); return; }
+      if (!phone) { alert('Please enter your phone number.'); return; }
+      if (adultCount === 0 && childCount === 0) { alert('Please select at least one ticket.'); return; }
+      if (!selectedPayment) { alert('Please select a payment method.'); return; }
+
+      const total = (adultCount * 175) + (childCount * 85);
+      const btn = document.getElementById('submitBtn');
+      btn.disabled = true;
+      btn.textContent = 'Submitting...';
+
+      // Submit to Jotform silently
+      try {
+        const fd = new FormData();
+        fd.append('q1_fullName[first]', firstName);
+        fd.append('q1_fullName[last]', lastName);
+        fd.append('q2_email', email);
+        fd.append('q3_phoneNumber[full]', phone);
+        fd.append('q4_numberOfAdult', adultCount.toString());
+        fd.append('q5_numberOfChild', childCount.toString());
+        fd.append('q6_paymentMethod', selectedPayment);
+        fd.append('q7_dietaryNeeds', notes);
+        fd.append('formID', '261407315712147');
+        await fetch('https://submit.jotform.com/submit/261407315712147/', {
+          method: 'POST', body: fd, mode: 'no-cors'
+        });
+      } catch(e) { console.log('Jotform note:', e); }
+
+      // Show success
+      document.getElementById('registrationForm').style.display = 'none';
+      const sd = document.getElementById('successDetails');
+      sd.innerHTML = `
+        <div class="success-detail-row"><span class="success-detail-label">Name</span><span class="success-detail-value">${firstName} ${lastName}</span></div>
+        <div class="success-detail-row"><span class="success-detail-label">Adult Tickets</span><span class="success-detail-value">${adultCount} × $175</span></div>
+        <div class="success-detail-row"><span class="success-detail-label">Child Tickets</span><span class="success-detail-value">${childCount} × $85</span></div>
+        <div class="success-detail-row"><span class="success-detail-label">Total Due</span><span class="success-detail-value">$${total.toFixed(2)}</span></div>
+        <div class="success-detail-row"><span class="success-detail-label">Payment Via</span><span class="success-detail-value">${selectedPayment}</span></div>
+      `;
+      document.getElementById('successScreen').style.display = 'block';
+      document.getElementById('regFormBox').scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+
 </script>
 </body>
 </html>
