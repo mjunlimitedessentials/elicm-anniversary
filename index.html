@@ -460,20 +460,19 @@
       btn.disabled = true; btn.textContent = 'Submitting...';
 
       try {
-        const fd = new FormData();
-        fd.append('q1_fullName[first]', firstName);
-        fd.append('q1_fullName[last]', lastName);
-        fd.append('q2_email', email);
-        fd.append('q3_phoneNumber[full]', phone);
-        fd.append('q4_numberOfAdult', adultCount.toString());
-        fd.append('q5_numberOfChild', childCount.toString());
-        fd.append('q6_paymentMethod', selectedPayment);
-        fd.append('q7_dietaryNeeds', notes);
-        fd.append('formID', '261407315712147');
-        await fetch('https://submit.jotform.com/submit/261407315712147/', {
-          method: 'POST', body: fd, mode: 'no-cors'
+        const res = await fetch('https://6a029d2b5cc37d5b54f861bf.base44.app/functions/elicmSubmit', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            firstName, lastName, email, phone,
+            adultCount, childCount,
+            paymentMethod: selectedPayment,
+            notes
+          })
         });
-      } catch(e) { console.log('Jotform note:', e); }
+        const data = await res.json();
+        if (!data.success) console.error('Submission error:', data);
+      } catch(e) { console.log('Submit note:', e); }
 
       document.getElementById('regForm').style.display = 'none';
       document.getElementById('successSummary').innerHTML = `
