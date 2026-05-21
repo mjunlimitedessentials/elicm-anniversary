@@ -166,6 +166,25 @@
       .form-row { grid-template-columns: 1fr; }
       .event-strip { flex-direction: column; align-items: center; gap: 1rem; }
     }
+
+    .price-link {
+      display: block;
+      font-family: 'Playfair Display', serif;
+      font-size: 2.5rem;
+      font-weight: 900;
+      color: var(--gold);
+      line-height: 1;
+      text-decoration: none;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .price-link:hover {
+      color: var(--gold-bright);
+      transform: scale(1.05);
+      display: block;
+    }
+    .price-card { cursor: pointer; transition: all 0.3s; }
+    .price-card:hover { transform: translateY(-4px); box-shadow: 0 10px 30px rgba(26,74,46,0.2); border-color: var(--green); }
   </style>
 </head>
 <body>
@@ -237,14 +256,14 @@
       <div class="price-card">
         <div class="price-icon">👤</div>
         <div class="price-label">Adult</div>
-        <div class="price-amount">$175</div>
-        <div class="price-per">per person</div>
+        <a class="price-amount price-link" href="#registration" onclick="scrollToForm()">$175</a>
+        <div class="price-per">per person · <span style="color:var(--green-mid);font-weight:700;">Click to Register →</span></div>
       </div>
       <div class="price-card">
         <div class="price-icon">👧</div>
         <div class="price-label">Child</div>
-        <div class="price-amount">$85</div>
-        <div class="price-per">under age 12</div>
+        <a class="price-amount price-link" href="#registration" onclick="scrollToForm()">$85</a>
+        <div class="price-per">under age 12 · <span style="color:var(--green-mid);font-weight:700;">Click to Register →</span></div>
       </div>
     </div>
 
@@ -256,16 +275,24 @@
         <div class="payment-logo cashapp-logo">💵</div>
         <div>
           <div class="payment-info-label">CashApp</div>
-          <div class="payment-info-value">Phone: (240) 678-4440</div>
-          <div class="payment-info-sub">Send to Apostle Shirley Martin</div>
+          <div class="payment-info-value">
+            <a href="https://cash.app/$Martin418" target="_blank" style="color:var(--green);text-decoration:none;font-weight:700;">
+              💵 Pay via CashApp →
+            </a>
+          </div>
+          <div class="payment-info-sub">Tap to open CashApp · Send to Apostle Shirley Martin</div>
         </div>
       </div>
       <div class="payment-method">
         <div class="payment-logo zelle-logo">💜</div>
         <div>
           <div class="payment-info-label">Zelle</div>
-          <div class="payment-info-value">shirleymartin418@gmail.com</div>
-          <div class="payment-info-sub">Send to Apostle Shirley Martin</div>
+          <div class="payment-info-value">
+            <a href="tel:+12406784440" style="color:var(--green);text-decoration:none;font-weight:700;">
+              📞 (240) 678-4440
+            </a>
+          </div>
+          <div class="payment-info-sub">Zelle to Apostle Shirley Martin · shirleymartin418@gmail.com</div>
         </div>
       </div>
       <div class="payment-method">
@@ -294,6 +321,7 @@
     </div>
 
     
+    <div id="registration"></div>
     <!-- REGISTRATION FORM -->
     <div class="form-box">
       <div class="form-title">✦ Complete Your Registration ✦</div>
@@ -435,5 +463,13 @@
       window.scrollTo({ top: document.querySelector('.form-box').offsetTop - 20, behavior: 'smooth' });
     }
   </script>
+<script>
+    function scrollToForm() {
+      setTimeout(function() {
+        const el = document.getElementById('registration');
+        if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }, 100);
+    }
+</script>
 </body>
 </html>
