@@ -216,6 +216,32 @@
     .success-detail-value { font-weight: 700; color: var(--green); }
     .success-msg { font-size: 0.95rem; color: var(--text-mid); line-height: 1.7; max-width: 460px; margin: 0 auto; }
 
+
+    .plan-sub-box {
+      display: none;
+      margin-top: 0.8rem;
+      background: #fff8e7;
+      border: 2px dashed var(--gold-light);
+      border-radius: 12px;
+      padding: 1rem 1.2rem;
+      animation: fadeIn 0.3s ease;
+    }
+    .plan-sub-box.show { display: block; }
+    @keyframes fadeIn { from { opacity: 0; transform: translateY(-6px); } to { opacity: 1; transform: translateY(0); } }
+    .plan-sub-title { font-size: 0.78rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--green); margin-bottom: 0.8rem; }
+    .plan-sub-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0.7rem; }
+    .plan-sub-option {
+      display: flex; align-items: center; gap: 0.7rem;
+      padding: 0.7rem 0.9rem;
+      border: 2px solid #ddd; border-radius: 10px;
+      cursor: pointer; background: white;
+      transition: all 0.2s;
+    }
+    .plan-sub-option:hover { border-color: var(--green-mid); background: rgba(26,74,46,0.04); }
+    .plan-sub-option.selected { border-color: var(--green); background: rgba(26,74,46,0.07); box-shadow: 0 0 0 3px rgba(26,74,46,0.08); }
+    .plan-sub-name { font-family: 'Playfair Display', serif; font-size: 0.9rem; font-weight: 700; color: var(--green); }
+    .plan-sub-detail { font-size: 0.72rem; color: #888; margin-top: 0.1rem; }
+
   </style>
 </head>
 <body>
@@ -438,6 +464,27 @@
             </div>
           </div>
           <input type="hidden" id="paymentMethod" value="" />
+
+          <!-- PAYMENT PLAN SUB-SELECTION — shown only when Payment Plan is selected -->
+          <div class="plan-sub-box" id="planSubBox">
+            <div class="plan-sub-title">📋 Which payment method will you use for your plan?</div>
+            <div class="plan-sub-grid">
+              <div class="plan-sub-option" id="plan-cashapp" onclick="selectPlanMethod('Payment Plan — CashApp')">
+                <div class="pay-icon" style="background:#00d632;width:32px;height:32px;font-size:1rem;">💵</div>
+                <div>
+                  <div class="plan-sub-name">CashApp</div>
+                  <div class="plan-sub-detail">(240) 678-4440</div>
+                </div>
+              </div>
+              <div class="plan-sub-option" id="plan-zelle" onclick="selectPlanMethod('Payment Plan — Zelle')">
+                <div class="pay-icon" style="background:#6d1ed4;width:32px;height:32px;font-size:1rem;">💜</div>
+                <div>
+                  <div class="plan-sub-name">Zelle</div>
+                  <div class="plan-sub-detail">shirleymartin418@gmail.com</div>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
 
         <!-- DIETARY -->
@@ -619,6 +666,28 @@
       document.getElementById('paymentMethod').value = method;
       document.querySelectorAll('.pay-option').forEach(el => el.classList.remove('selected'));
       const map = { 'CashApp': 'pay-cashapp', 'Zelle': 'pay-zelle', 'Payment Plan': 'pay-plan' };
+      const el = document.getElementById(map[method]);
+      if (el) el.classList.add('selected');
+
+      // Show/hide payment plan sub-selection
+      const subBox = document.getElementById('planSubBox');
+      if (method === 'Payment Plan') {
+        subBox.classList.add('show');
+      } else {
+        subBox.classList.remove('show');
+        // Reset sub-selection
+        document.querySelectorAll('.plan-sub-option').forEach(e => e.classList.remove('selected'));
+      }
+    }
+
+    function selectPlanMethod(method) {
+      selectedPayment = method;
+      document.getElementById('paymentMethod').value = method;
+      document.querySelectorAll('.plan-sub-option').forEach(e => e.classList.remove('selected'));
+      const map = {
+        'Payment Plan — CashApp': 'plan-cashapp',
+        'Payment Plan — Zelle': 'plan-zelle'
+      };
       const el = document.getElementById(map[method]);
       if (el) el.classList.add('selected');
     }
