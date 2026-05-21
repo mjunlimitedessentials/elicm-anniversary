@@ -293,99 +293,30 @@
       <div class="deadline-sub">All payments must be received by this date to secure your seat</div>
     </div>
 
+    
     <!-- REGISTRATION FORM -->
     <div class="form-box">
       <div class="form-title">✦ Complete Your Registration ✦</div>
+      <p style="text-align:center; color:#666; font-size:0.9rem; margin-bottom:1.5rem; font-style:italic;">Fill out the form below to secure your seat. You will receive payment instructions upon completion.</p>
 
-      <div id="registrationForm">
-        <div class="form-row">
-          <div class="form-group">
-            <label>First Name *</label>
-            <input type="text" id="firstName" placeholder="First name" required />
-          </div>
-          <div class="form-group">
-            <label>Last Name *</label>
-            <input type="text" id="lastName" placeholder="Last name" required />
-          </div>
-        </div>
-        <div class="form-group">
-          <label>Email Address *</label>
-          <input type="email" id="email" placeholder="your@email.com" required />
-        </div>
-        <div class="form-group">
-          <label>Phone Number *</label>
-          <input type="tel" id="phone" placeholder="(555) 000-0000" required />
-        </div>
+      <!-- JOTFORM EMBED -->
+      <iframe
+        id="JotFormIFrame-261407315712147"
+        title="ELICM 16th Anniversary Registration"
+        onload="window.parent.scrollTo(0,0)"
+        allowtransparency="true"
+        allow="geolocation; microphone; camera; fullscreen"
+        src="https://form.jotform.com/261407315712147"
+        frameborder="0"
+        style="min-width:100%; max-width:100%; height:700px; border:none; border-radius:12px;"
+        scrolling="yes"
+      ></iframe>
+      <script src='https://cdn.jotfor.ms/s/umd/latest/for-form-embed-handler.js'></script>
+      <script>window.jotformEmbedHandler("iframe[id='JotFormIFrame-261407315712147']", "https://form.jotform.com/")</script>
 
-        <!-- TICKETS -->
-        <div class="form-group">
-          <label>Select Your Tickets</label>
-          <div class="ticket-selector">
-            <div class="ticket-option" id="adultCard">
-              <div class="ticket-type">👤 Adult</div>
-              <div class="ticket-price">$175</div>
-              <div class="ticket-note">per person</div>
-              <div class="qty-row">
-                <button class="qty-btn" onclick="changeQty('adult',-1)">−</button>
-                <span class="qty-display" id="adultQty">0</span>
-                <button class="qty-btn" onclick="changeQty('adult',1)">+</button>
-              </div>
-            </div>
-            <div class="ticket-option" id="childCard">
-              <div class="ticket-type">👧 Child</div>
-              <div class="ticket-price">$85</div>
-              <div class="ticket-note">under 12</div>
-              <div class="qty-row">
-                <button class="qty-btn" onclick="changeQty('child',-1)">−</button>
-                <span class="qty-display" id="childQty">0</span>
-                <button class="qty-btn" onclick="changeQty('child',1)">+</button>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- PAYMENT METHOD -->
-        <div class="form-group">
-          <label>Payment Method *</label>
-          <select id="paymentMethod" onchange="showPaymentInstructions()">
-            <option value="">— Select payment method —</option>
-            <option value="CashApp">CashApp — (240) 678-4440</option>
-            <option value="Zelle">Zelle — shirleymartin418@gmail.com</option>
-            <option value="Payment Plan">Payment Plan — Contact Apostle Shirley Martin</option>
-          </select>
-        </div>
-
-        <!-- DYNAMIC PAYMENT INSTRUCTIONS -->
-        <div class="payment-confirm-box" id="paymentInstructions">
-          <div class="payment-confirm-title">📋 Payment Instructions</div>
-          <div id="paymentInstructionContent"></div>
-        </div>
-
-        <div class="form-group">
-          <label>Dietary Needs / Special Requests</label>
-          <textarea id="notes" placeholder="Vegan, vegetarian, accessibility needs, etc."></textarea>
-        </div>
-
-        <div class="total-box">
-          <span class="total-label">Registration Total</span>
-          <span class="total-amount" id="totalAmount">$0.00</span>
-        </div>
-
-        <button class="submit-btn" id="submitBtn" onclick="submitForm()">✦ Submit Registration ✦</button>
-        <p class="form-note">After submitting, complete your payment via your selected method. Your registration is confirmed once payment is received by <strong>September 2, 2026</strong>.</p>
-      </div>
-
-      <!-- SUCCESS -->
-      <div class="success-screen" id="successScreen">
-        <div class="success-icon">🙏</div>
-        <div class="success-title">You're Registered!</div>
-        <div class="success-details" id="successDetails"></div>
-        <p class="success-msg">
-          Please complete your payment to <b>Apostle Shirley Martin</b> before <b>September 2, 2026</b> to confirm your seat.<br/><br/>
-          <i>"Come celebrate God's faithfulness and the journey He has led us on!"</i> 💚✨
-        </p>
-      </div>
+      <p class="form-note" style="margin-top:1.5rem;">After submitting, complete your payment via your selected method. Your registration is confirmed once payment is received by <strong>September 2, 2026</strong>.</p>
     </div>
+
 
   </main>
 
