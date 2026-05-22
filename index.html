@@ -49,7 +49,7 @@
     .ticket-card{background:#fff;border:2px solid #d4af37;border-radius:20px;padding:2.2rem 1.5rem;text-align:center;cursor:pointer;transition:all 0.25s;position:relative;overflow:hidden;box-shadow:0 4px 20px rgba(26,74,46,0.1);}
     .ticket-card::before{content:'';position:absolute;top:0;left:0;right:0;height:4px;background:linear-gradient(90deg,#1a4a2e,#d4af37);}
     .ticket-card:hover{transform:translateY(-6px);box-shadow:0 14px 40px rgba(26,74,46,0.22);border-color:#1a4a2e;}
-    .tc-icon{font-size:2.5rem;margin-bottom:0.5rem;}
+    .tc-icon{font-size:2.5rem;margin-bottom:0.5rem;display:flex;justify-content:center;align-items:center;}
     .tc-type{font-family:'Playfair Display',serif;font-size:1.1rem;font-weight:700;color:#1a4a2e;margin-bottom:0.3rem;}
     .tc-price{font-family:'Playfair Display',serif;font-size:3rem;font-weight:900;color:#b8962e;line-height:1;}
     .tc-note{font-size:0.78rem;color:#888;margin-top:0.4rem;margin-bottom:1rem;}
@@ -168,14 +168,39 @@
       <div class="divider"></div>
       <div class="ticket-cards">
         <div class="ticket-card" onclick="showForm()">
-          <div class="tc-icon">&#127903;</div>
+          <div class="tc-icon">
+            <svg width="54" height="54" viewBox="0 0 54 54" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <circle cx="27" cy="27" r="25" stroke="#d4af37" stroke-width="1.5" fill="none" opacity="0.4"/>
+              <circle cx="27" cy="27" r="20" fill="#1a4a2e" opacity="0.07"/>
+              <rect x="25" y="10" width="4" height="34" rx="2" fill="#1a4a2e"/>
+              <rect x="10" y="25" width="34" height="4" rx="2" fill="#1a4a2e"/>
+              <circle cx="27" cy="27" r="5" fill="#d4af37"/>
+              <circle cx="27" cy="11" r="2.2" fill="#d4af37"/>
+              <circle cx="27" cy="43" r="2.2" fill="#d4af37"/>
+              <circle cx="11" cy="27" r="2.2" fill="#d4af37"/>
+              <circle cx="43" cy="27" r="2.2" fill="#d4af37"/>
+            </svg>
+          </div>
           <div class="tc-type">Adult Ticket</div>
           <div class="tc-price">$175</div>
           <div class="tc-note">Ages 13 &amp; up</div>
           <div class="tc-cta">Register Now</div>
         </div>
         <div class="ticket-card" onclick="showForm()">
-          <div class="tc-icon">&#128103;</div>
+          <div class="tc-icon">
+            <svg width="54" height="54" viewBox="0 0 54 54" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <circle cx="27" cy="27" r="25" stroke="#d4af37" stroke-width="1.5" fill="none" opacity="0.4"/>
+              <circle cx="27" cy="27" r="20" fill="#1a4a2e" opacity="0.07"/>
+              <!-- Elegant 8-point star -->
+              <polygon points="27,10 29.5,22 37,14.5 29.5,22 42,24.5 29.5,27 37,39.5 27,32 17,39.5 24.5,27 12,24.5 24.5,22 17,14.5 24.5,22" fill="#1a4a2e"/>
+              <circle cx="27" cy="27" r="5" fill="#d4af37"/>
+              <!-- Corner sparkles -->
+              <circle cx="27" cy="11" r="2" fill="#d4af37"/>
+              <circle cx="27" cy="43" r="2" fill="#d4af37"/>
+              <circle cx="11" cy="27" r="2" fill="#d4af37"/>
+              <circle cx="43" cy="27" r="2" fill="#d4af37"/>
+            </svg>
+          </div>
           <div class="tc-type">Child Ticket</div>
           <div class="tc-price">$85</div>
           <div class="tc-note">Ages 12 &amp; under</div>
