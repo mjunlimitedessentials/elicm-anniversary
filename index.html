@@ -460,18 +460,43 @@
       btn.disabled = true; btn.textContent = 'Submitting...';
 
       try {
-        const res = await fetch('https://6a029d2b5cc37d5b54f861bf.base44.app/functions/elicmSubmit', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
+        // 1. Submit to Jotform directly
+        const jfData = new FormData();
+        jfData.append("submission[1][first]", firstName);
+        jfData.append("submission[1][last]",  lastName);
+        jfData.append("submission[2]",         email);
+        jfData.append("submission[3][full]",   phone);
+        jfData.append("submission[4]",         String(adultCount));
+        jfData.append("submission[5]",         String(childCount));
+        jfData.append("submission[6]",         selectedPayment);
+        jfData.append("submission[7]",         notes || "");
+        jfData.append("formID",                "261407315712147");
+        jfData.append("simple_spc",            "261407315712147-261407315712147");
+        await fetch("https://submit.jotform.com/submit/261407315712147/", {
+          method: "POST", body: jfData, mode: "no-cors"
+        });
+
+        // 2. Send EmailJS confirmation
+        await fetch("https://api.emailjs.com/api/v1.0/email/send", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
           body: JSON.stringify({
-            firstName, lastName, email, phone,
-            adultCount, childCount,
-            paymentMethod: selectedPayment,
-            notes
+            service_id: "service_lrg9iws",
+            template_id: "template_mwohdg8",
+            user_id: "GcBbWc4OBpPHY0Ckv",
+            accessToken: "UiuyULlRBdFpEsTfXh24W",
+            template_params: {
+              to_name: firstName + " " + lastName,
+              to_email: email,
+              phone: phone,
+              adult_tickets: adultCount + " x $175",
+              child_tickets: childCount + " x $85",
+              total: "$" + total.toFixed(2),
+              payment_method: selectedPayment,
+              deadline: "September 2, 2026"
+            }
           })
         });
-        const data = await res.json();
-        if (!data.success) console.error('Submission error:', data);
       } catch(e) { console.log('Submit note:', e); }
 
       document.getElementById('regForm').style.display = 'none';
