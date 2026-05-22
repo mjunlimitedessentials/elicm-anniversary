@@ -2,10 +2,11 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>ELICM 16th Anniversary — Register</title>
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=Lato:wght@300;400;700&family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,400&family=Cormorant+Garamond:ital,wght@0,400;1,400&family=Lato:wght@400;700&display=swap" rel="stylesheet" />
   <style>
     :root {
       --cream: #f9f4ec;
@@ -20,45 +21,42 @@
     * { margin: 0; padding: 0; box-sizing: border-box; }
     body { font-family: 'Lato', sans-serif; background: var(--cream); min-height: 100vh; }
 
-    /* HEADER */
     .header {
-      background: linear-gradient(160deg, var(--green) 0%, #0f3320 100%);
+      background: linear-gradient(160deg, #1a4a2e 0%, #0f3320 100%);
       padding: 2.5rem 1.5rem 2rem;
       text-align: center;
     }
-    .church-name { font-size: 0.72rem; font-weight: 700; letter-spacing: 0.3em; text-transform: uppercase; color: var(--gold-light); margin-bottom: 0.8rem; }
-    .header-years { font-family: 'Playfair Display', serif; font-size: clamp(3.5rem,12vw,6rem); font-weight: 900; color: var(--gold-bright); line-height: 0.9; }
-    .header-years span { font-size: clamp(2rem,7vw,4rem); font-style: italic; font-weight: 400; color: var(--gold-light); }
-    .header-ministry { font-family: 'Playfair Display', serif; font-size: clamp(1.2rem,4vw,2.2rem); font-weight: 900; color: var(--white); letter-spacing: 0.1em; text-transform: uppercase; }
-    .header-divider { width: 60px; height: 2px; background: linear-gradient(90deg, transparent, var(--gold-light), transparent); margin: 0.8rem auto; }
+    .church-name { font-size: 0.72rem; font-weight: 700; letter-spacing: 0.3em; text-transform: uppercase; color: #d4af37; margin-bottom: 0.8rem; }
+    .header-years { font-family: 'Playfair Display', serif; font-size: clamp(3.5rem,12vw,6rem); font-weight: 900; color: #f5c842; line-height: 0.9; }
+    .header-years span { font-size: clamp(2rem,7vw,4rem); font-style: italic; font-weight: 400; color: #d4af37; }
+    .header-ministry { font-family: 'Playfair Display', serif; font-size: clamp(1.2rem,4vw,2.2rem); font-weight: 900; color: #ffffff; letter-spacing: 0.1em; text-transform: uppercase; }
+    .header-divider { width: 60px; height: 2px; background: linear-gradient(90deg, transparent, #d4af37, transparent); margin: 0.8rem auto; }
     .header-sub { font-family: 'Cormorant Garamond', serif; font-size: clamp(0.95rem,2.5vw,1.15rem); font-style: italic; color: rgba(249,244,236,0.8); max-width: 460px; margin: 0 auto 1rem; line-height: 1.5; }
     .leaders-honor { font-size: 0.78rem; color: rgba(212,175,55,0.75); letter-spacing: 0.1em; margin-bottom: 0.2rem; }
-    .leaders-name { font-family: 'Playfair Display', serif; font-size: clamp(1.2rem,4vw,1.8rem); font-style: italic; color: var(--gold-bright); }
-    .leaders-last { font-family: 'Playfair Display', serif; font-size: clamp(1rem,3vw,1.4rem); font-weight: 900; color: var(--white); letter-spacing: 0.12em; text-transform: uppercase; }
+    .leaders-name { font-family: 'Playfair Display', serif; font-size: clamp(1.2rem,4vw,1.8rem); font-style: italic; color: #f5c842; }
+    .leaders-last { font-family: 'Playfair Display', serif; font-size: clamp(1rem,3vw,1.4rem); font-weight: 900; color: #ffffff; letter-spacing: 0.12em; text-transform: uppercase; }
 
-    /* EVENT BAR */
     .event-bar {
-      background: var(--green);
-      border-top: 2px solid var(--gold);
-      border-bottom: 2px solid var(--gold);
+      background: #1a4a2e;
+      border-top: 2px solid #b8962e;
+      border-bottom: 2px solid #b8962e;
       padding: 0.9rem 1.5rem;
-      display: flex; justify-content: center; flex-wrap: wrap; gap: 1.2rem;
+      display: flex; justify-content: center; flex-wrap: wrap; gap: 1.5rem;
     }
     .ev { display: flex; align-items: center; gap: 0.5rem; }
-    .ev-text { font-size: 0.82rem; color: var(--cream); line-height: 1.3; }
-    .ev-text strong { color: var(--gold-light); font-size: 0.72rem; display: block; letter-spacing: 0.1em; text-transform: uppercase; }
+    .ev-icon { font-size: 1.1rem; }
+    .ev-text { font-size: 0.82rem; color: #f9f4ec; line-height: 1.3; }
+    .ev-text strong { color: #d4af37; font-size: 0.72rem; display: block; letter-spacing: 0.1em; text-transform: uppercase; }
 
-    /* SHARED */
-    .section-wrap { max-width: 600px; margin: 0 auto; padding: 2.8rem 1.5rem; }
-    .section-title { font-family: 'Playfair Display', serif; font-size: 1.5rem; font-weight: 700; color: var(--green); text-align: center; margin-bottom: 0.25rem; }
+    .section-wrap { max-width: 640px; margin: 0 auto; padding: 2.8rem 1.5rem; }
+    .section-title { font-family: 'Playfair Display', serif; font-size: 1.5rem; font-weight: 700; color: #1a4a2e; text-align: center; margin-bottom: 0.25rem; }
     .section-sub { font-family: 'Cormorant Garamond', serif; font-size: 1rem; font-style: italic; color: #777; text-align: center; margin-bottom: 2rem; }
-    .divider { width: 50px; height: 2px; background: linear-gradient(90deg, transparent, var(--gold), transparent); margin: 0.4rem auto 2rem; }
+    .divider { width: 50px; height: 2px; background: linear-gradient(90deg, transparent, #b8962e, transparent); margin: 0.4rem auto 2rem; }
 
-    /* TICKET CARDS */
     .ticket-cards { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin-bottom: 2rem; }
     .ticket-card {
-      background: var(--white);
-      border: 2px solid var(--gold-light);
+      background: #ffffff;
+      border: 2px solid #d4af37;
       border-radius: 20px;
       padding: 2.2rem 1.5rem;
       text-align: center;
@@ -68,470 +66,175 @@
       overflow: hidden;
       box-shadow: 0 4px 20px rgba(26,74,46,0.1);
     }
-    .ticket-card::before { content:''; position:absolute; top:0; left:0; right:0; height:4px; background: linear-gradient(90deg, var(--green), var(--gold-light)); }
-    .ticket-card:hover { transform: translateY(-6px); box-shadow: 0 14px 40px rgba(26,74,46,0.22); border-color: var(--green); }
+    .ticket-card::before { content:''; position:absolute; top:0; left:0; right:0; height:4px; background: linear-gradient(90deg, #1a4a2e, #d4af37); }
+    .ticket-card:hover { transform: translateY(-6px); box-shadow: 0 14px 40px rgba(26,74,46,0.22); border-color: #1a4a2e; }
     .tc-icon { font-size: 2.5rem; margin-bottom: 0.5rem; }
-    .tc-type { font-family: 'Playfair Display', serif; font-size: 1.1rem; font-weight: 700; color: var(--green); margin-bottom: 0.3rem; }
-    .tc-price { font-family: 'Playfair Display', serif; font-size: 3rem; font-weight: 900; color: var(--gold); line-height: 1; }
+    .tc-type { font-family: 'Playfair Display', serif; font-size: 1.1rem; font-weight: 700; color: #1a4a2e; margin-bottom: 0.3rem; }
+    .tc-price { font-family: 'Playfair Display', serif; font-size: 3rem; font-weight: 900; color: #b8962e; line-height: 1; }
     .tc-note { font-size: 0.78rem; color: #888; margin-top: 0.4rem; margin-bottom: 1rem; }
-    .tc-cta { display: inline-block; background: var(--green); color: var(--white); font-size: 0.75rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; padding: 0.5rem 1.2rem; border-radius: 20px; transition: background 0.2s; }
-    .ticket-card:hover .tc-cta { background: var(--green-mid); }
-
+    .tc-cta { display: inline-block; background: #1a4a2e; color: #ffffff; font-size: 0.75rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; padding: 0.5rem 1.2rem; border-radius: 20px; }
     .deadline-pill { display: block; text-align: center; }
-    .deadline-pill span { display: inline-block; background: linear-gradient(135deg, var(--green), #0f3320); border: 1px solid var(--gold); color: var(--gold-bright); font-size: 0.8rem; font-weight: 700; letter-spacing: 0.08em; padding: 0.6rem 1.4rem; border-radius: 30px; }
+    .deadline-pill span { display: inline-block; background: linear-gradient(135deg, #1a4a2e, #0f3320); border: 1px solid #b8962e; color: #f5c842; font-size: 0.8rem; font-weight: 700; letter-spacing: 0.08em; padding: 0.6rem 1.4rem; border-radius: 30px; }
 
-    /* FORM SECTION */
     #formSection { display: none; }
-    .back-btn { display: inline-flex; align-items: center; gap: 0.4rem; background: none; border: 1.5px solid var(--green); color: var(--green); font-family: 'Lato', sans-serif; font-size: 0.8rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; padding: 0.45rem 1rem; border-radius: 20px; cursor: pointer; margin-bottom: 1.8rem; transition: all 0.2s; }
-    .back-btn:hover { background: var(--green); color: white; }
+    .back-btn { display: inline-flex; align-items: center; gap: 0.4rem; background: none; border: 1.5px solid #1a4a2e; color: #1a4a2e; font-family: 'Lato', sans-serif; font-size: 0.8rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; padding: 0.45rem 1rem; border-radius: 20px; cursor: pointer; margin-bottom: 1.8rem; transition: all 0.2s; }
+    .back-btn:hover { background: #1a4a2e; color: white; }
 
-    .form-box { background: var(--white); border: 1px solid var(--cream-dark); border-radius: 20px; padding: 2.2rem 2rem; box-shadow: 0 4px 30px rgba(26,74,46,0.1); }
-    .form-title { font-family: 'Playfair Display', serif; font-size: 1.4rem; font-weight: 700; color: var(--green); text-align: center; margin-bottom: 0.2rem; }
-    .form-subtitle { text-align: center; font-size: 0.82rem; color: #888; font-style: italic; margin-bottom: 1.8rem; }
-
-    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-bottom: 1rem; }
-    .form-group { margin-bottom: 1rem; }
-    .form-group label { display: block; font-size: 0.73rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--green); margin-bottom: 0.4rem; }
-    .req { color: #c0392b; }
-    .form-group input, .form-group textarea {
-      width: 100%; padding: 0.85rem 1rem;
-      border: 1.5px solid #ddd; border-radius: 10px;
-      font-family: 'Lato', sans-serif; font-size: 0.95rem; color: #1a1a1a;
-      background: #fafafa; outline: none; transition: all 0.25s;
+    .jotform-wrap {
+      background: #ffffff;
+      border: 1px solid #ede8dc;
+      border-radius: 20px;
+      overflow: hidden;
+      box-shadow: 0 4px 30px rgba(26,74,46,0.1);
     }
-    .form-group input:focus, .form-group textarea:focus { border-color: var(--green-mid); background: white; box-shadow: 0 0 0 3px rgba(26,74,46,0.08); }
-    .form-group textarea { resize: vertical; min-height: 75px; }
+    .jotform-header {
+      background: linear-gradient(135deg, #1a4a2e, #0f3320);
+      padding: 1.5rem 2rem;
+      text-align: center;
+      border-bottom: 2px solid #b8962e;
+    }
+    .jotform-header h2 { font-family: 'Playfair Display', serif; font-size: 1.3rem; color: #ffffff; margin-bottom: 0.2rem; }
+    .jotform-header p { font-size: 0.8rem; color: rgba(212,175,55,0.85); font-style: italic; }
+    .jotform-frame { width: 100%; border: none; min-height: 720px; display: block; background: white; }
 
-    /* QTY CARDS */
-    .section-label { font-size: 0.72rem; font-weight: 700; letter-spacing: 0.15em; text-transform: uppercase; color: var(--green); margin-bottom: 0.7rem; }
-    .qty-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-bottom: 1rem; }
-    .qty-card { border: 2px solid #ddd; border-radius: 14px; padding: 1rem; text-align: center; background: #fafafa; transition: all 0.2s; }
-    .qty-card.active { border-color: var(--green); background: rgba(26,74,46,0.05); }
-    .qty-card-type { font-family: 'Playfair Display', serif; font-size: 0.95rem; font-weight: 700; color: var(--green); }
-    .qty-card-price { font-family: 'Playfair Display', serif; font-size: 1.4rem; font-weight: 900; color: var(--gold); }
-    .qty-row { display: flex; align-items: center; justify-content: center; gap: 0.9rem; margin-top: 0.5rem; }
-    .qty-btn { width: 30px; height: 30px; border: 2px solid var(--green); border-radius: 50%; background: none; color: var(--green); font-size: 1.1rem; font-weight: 700; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: all 0.2s; line-height: 1; }
-    .qty-btn:hover { background: var(--green); color: white; }
-    .qty-num { font-size: 1.2rem; font-weight: 700; color: var(--green); min-width: 24px; }
-
-    /* PAYMENT */
-    .pay-grid { display: grid; grid-template-columns: 1fr; gap: 0.7rem; margin-bottom: 1rem; }
-    .pay-option { display: flex; align-items: center; gap: 0.9rem; padding: 0.9rem 1.1rem; border: 2px solid #ddd; border-radius: 12px; cursor: pointer; background: #fafafa; transition: all 0.22s; }
-    .pay-option:hover { border-color: var(--green-mid); background: rgba(26,74,46,0.04); }
-    .pay-option.selected { border-color: var(--green); background: rgba(26,74,46,0.07); box-shadow: 0 0 0 3px rgba(26,74,46,0.1); }
-    .pay-icon { width: 38px; height: 38px; border-radius: 9px; display: flex; align-items: center; justify-content: center; font-size: 1.1rem; flex-shrink: 0; }
-    .pay-name { font-family: 'Playfair Display', serif; font-size: 0.95rem; font-weight: 700; color: var(--green); }
-    .pay-detail { font-size: 0.75rem; color: #888; margin-top: 0.1rem; }
-
-    /* PLAN SUB */
-    .plan-sub-box { display: none; margin-top: 0.6rem; background: #fff8e7; border: 2px dashed var(--gold-light); border-radius: 12px; padding: 1rem 1.1rem; animation: fadeIn 0.25s ease; }
-    .plan-sub-box.show { display: block; }
-    @keyframes fadeIn { from { opacity:0; transform:translateY(-5px); } to { opacity:1; transform:translateY(0); } }
-    .plan-sub-title { font-size: 0.72rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--green); margin-bottom: 0.7rem; }
-    .plan-sub-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0.6rem; }
-    .plan-sub-opt { display: flex; align-items: center; gap: 0.6rem; padding: 0.65rem 0.8rem; border: 2px solid #ddd; border-radius: 9px; cursor: pointer; background: white; transition: all 0.2s; }
-    .plan-sub-opt:hover { border-color: var(--green-mid); }
-    .plan-sub-opt.selected { border-color: var(--green); background: rgba(26,74,46,0.07); }
-    .plan-sub-name { font-family: 'Playfair Display', serif; font-size: 0.85rem; font-weight: 700; color: var(--green); }
-    .plan-sub-detail { font-size: 0.7rem; color: #888; }
-
-    /* TOTAL & SUBMIT */
-    .total-box { background: linear-gradient(135deg, var(--green), #0f3320); border-radius: 12px; padding: 1.1rem 1.4rem; display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.4rem; }
-    .total-label { font-family: 'Playfair Display', serif; font-size: 1rem; color: var(--cream); }
-    .total-amt { font-family: 'Playfair Display', serif; font-size: 1.9rem; font-weight: 900; color: var(--gold-bright); }
-    .submit-btn { width: 100%; padding: 1rem; background: linear-gradient(135deg, var(--green), var(--green-mid)); border: 2px solid var(--gold); border-radius: 12px; color: white; font-family: 'Playfair Display', serif; font-size: 1.1rem; font-weight: 700; cursor: pointer; transition: all 0.25s; box-shadow: 0 4px 18px rgba(26,74,46,0.25); }
-    .submit-btn:hover { transform: translateY(-2px); box-shadow: 0 8px 28px rgba(26,74,46,0.35); }
-    .submit-btn:disabled { opacity: 0.5; cursor: not-allowed; transform: none; }
-    .form-note { text-align: center; font-size: 0.78rem; color: #888; margin-top: 0.9rem; font-style: italic; }
-
-    /* SUCCESS */
-    .success-screen { display: none; text-align: center; padding: 1.5rem 0.5rem; }
-    .success-icon { font-size: 3.5rem; margin-bottom: 0.7rem; }
-    .success-title { font-family: 'Playfair Display', serif; font-size: 1.8rem; font-weight: 700; color: var(--green); margin-bottom: 0.8rem; }
-    .success-summary { background: var(--cream); border: 1px solid var(--cream-dark); border-radius: 12px; padding: 1.1rem; margin: 0.8rem auto 1.2rem; max-width: 360px; text-align: left; }
-    .sum-row { display: flex; justify-content: space-between; padding: 0.38rem 0; border-bottom: 1px solid var(--cream-dark); font-size: 0.88rem; }
-    .sum-row:last-child { border-bottom: none; }
-    .sum-label { color: #888; }
-    .sum-value { font-weight: 700; color: var(--green); }
-    .success-msg { font-size: 0.92rem; color: #555; line-height: 1.8; max-width: 420px; margin: 0 auto; }
-
-    /* FOOTER */
-    .footer { background: var(--green); border-top: 3px solid var(--gold); padding: 1.8rem; text-align: center; }
-    .footer-quote { font-family: 'Cormorant Garamond', serif; font-size: 1.05rem; font-style: italic; color: var(--cream); margin-bottom: 0.4rem; }
-    .footer-tag { font-size: 0.7rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold-light); font-weight: 700; }
+    .payment-box {
+      background: #ffffff;
+      border: 2px solid #d4af37;
+      border-radius: 20px;
+      padding: 2rem;
+      margin-top: 2rem;
+      box-shadow: 0 4px 20px rgba(26,74,46,0.08);
+    }
+    .payment-box h3 { font-family: 'Playfair Display', serif; font-size: 1.2rem; color: #1a4a2e; text-align: center; margin-bottom: 0.3rem; }
+    .pay-divider { width: 40px; height: 2px; background: linear-gradient(90deg, transparent, #b8962e, transparent); margin: 0.4rem auto 1.4rem; }
+    .pay-method { display: flex; align-items: flex-start; gap: 1rem; padding: 1rem 1.2rem; border: 1.5px solid #ede8dc; border-radius: 12px; margin-bottom: 0.9rem; background: #f9f4ec; }
+    .pay-method-icon { font-size: 1.8rem; flex-shrink: 0; margin-top: 0.1rem; }
+    .pay-method-name { font-family: 'Playfair Display', serif; font-size: 1rem; font-weight: 700; color: #1a4a2e; margin-bottom: 0.3rem; }
+    .pay-method-detail { font-size: 0.85rem; color: #444; line-height: 1.6; }
+    .pay-handle { font-weight: 700; color: #2d6e47; }
+    .deadline-notice { text-align: center; margin-top: 1.2rem; background: linear-gradient(135deg, #1a4a2e, #0f3320); border-radius: 12px; padding: 1rem 1.2rem; }
+    .deadline-notice p { color: #f5c842; font-size: 0.85rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; }
+    .deadline-notice span { color: rgba(249,244,236,0.85); font-size: 0.8rem; display: block; margin-top: 0.3rem; font-style: italic; }
 
     @media (max-width: 480px) {
-      .form-row { grid-template-columns: 1fr; }
-      .plan-sub-grid { grid-template-columns: 1fr 1fr; }
+      .ticket-cards { gap: 1rem; }
+      .tc-price { font-size: 2.2rem; }
+      .jotform-frame { min-height: 900px; }
     }
   </style>
 </head>
 <body>
 
   <!-- HEADER -->
-  <header class="header">
-    <div class="church-name">✦ Eternal Life In Christ Ministries, Int'l ✦</div>
-    <div class="header-years">16<span>Years</span></div>
-    <div class="header-ministry">of Ministry</div>
+  <div class="header">
+    <div class="church-name">Eternal Life In Christ Ministries</div>
+    <div class="header-years">16<span>th</span></div>
+    <div class="header-ministry">Church Anniversary</div>
     <div class="header-divider"></div>
-    <div class="header-sub">Join us as we celebrate sixteen years of God's faithfulness, growth, and Kingdom impact.</div>
-    <div class="leaders-honor">Honoring Sr. Apostles</div>
-    <div class="leaders-name">Kenneth &amp; Tresti</div>
-    <div class="leaders-last">Cunningham</div>
-  </header>
+    <div class="header-sub">"Rooted in Faith. Thriving in Purpose. Celebrating His Glory."</div>
+    <div class="leaders-honor">Hosted by</div>
+    <div class="leaders-name">Apostle &amp; Pastor</div>
+    <div class="leaders-last">Kenneth &amp; Tresti Cunningham</div>
+  </div>
 
   <!-- EVENT BAR -->
   <div class="event-bar">
-    <div class="ev"><span class="ev-text"><strong>Date</strong>Sunday, Sept 20, 2026</span></div>
-    <div class="ev"><span class="ev-text"><strong>Time</strong>1:00 PM – 5:00 PM</span></div>
-    <div class="ev"><span class="ev-text"><strong>Venue</strong>Martin's Crosswinds, Greenbelt MD</span></div>
-    <div class="ev"><span class="ev-text"><strong>Music</strong>Robert Martin, Saxophonist</span></div>
+    <div class="ev"><span class="ev-icon">📅</span><div class="ev-text"><strong>Date</strong>Saturday, October 4, 2026</div></div>
+    <div class="ev"><span class="ev-icon">🕐</span><div class="ev-text"><strong>Time</strong>1:00 PM – 5:00 PM</div></div>
+    <div class="ev"><span class="ev-icon">📍</span><div class="ev-text"><strong>Location</strong>Waldorf, MD</div></div>
   </div>
 
-  <!-- ══ SECTION 1: TICKET SELECTION ══ -->
+  <!-- LANDING -->
   <div id="landingSection">
     <div class="section-wrap">
-      <div class="section-title">Registration Pricing</div>
+      <div class="section-title">Secure Your Seat</div>
+      <div class="section-sub">Select your ticket type below to begin registration</div>
       <div class="divider"></div>
 
       <div class="ticket-cards">
-        <div class="ticket-card" onclick="startForm('adult')">
-          <div class="tc-icon">👤</div>
-          <div class="tc-type">Adult</div>
+        <div class="ticket-card" onclick="showForm()">
+          <div class="tc-icon">🎟️</div>
+          <div class="tc-type">Adult Ticket</div>
           <div class="tc-price">$175</div>
-          <div class="tc-note">per person</div>
-          <div class="tc-cta">Register →</div>
+          <div class="tc-note">Ages 13 &amp; up</div>
+          <div class="tc-cta">Register Now</div>
         </div>
-        <div class="ticket-card" onclick="startForm('child')">
+        <div class="ticket-card" onclick="showForm()">
           <div class="tc-icon">👧</div>
-          <div class="tc-type">Child</div>
+          <div class="tc-type">Child Ticket</div>
           <div class="tc-price">$85</div>
-          <div class="tc-note">under age 12</div>
-          <div class="tc-cta">Register →</div>
+          <div class="tc-note">Ages 12 &amp; under</div>
+          <div class="tc-cta">Register Now</div>
         </div>
       </div>
 
       <div class="deadline-pill">
-        <span>⚠️ Final Payment Deadline: September 2, 2026</span>
+        <span>⏳ Final Payment Deadline: September 2, 2026</span>
       </div>
     </div>
   </div>
 
-  <!-- ══ SECTION 2: REGISTRATION FORM ══ -->
+  <!-- FORM + PAYMENT SECTION -->
   <div id="formSection">
     <div class="section-wrap">
-      <button class="back-btn" onclick="goBack()">← Back</button>
+      <button class="back-btn" onclick="showLanding()">&#8592; Back to Tickets</button>
 
-      <div class="form-box">
-        <div class="form-title">✦ Complete Registration ✦</div>
-        <div class="form-subtitle">Fill in your details below to secure your seat</div>
-
-        <div id="regForm">
-
-          <!-- NAME -->
-          <div class="form-row">
-            <div class="form-group">
-              <label>First Name <span class="req">*</span></label>
-              <input type="text" id="firstName" placeholder="First name" />
-            </div>
-            <div class="form-group">
-              <label>Last Name <span class="req">*</span></label>
-              <input type="text" id="lastName" placeholder="Last name" />
-            </div>
-          </div>
-
-          <!-- EMAIL -->
-          <div class="form-group">
-            <label>Email Address <span class="req">*</span></label>
-            <input type="email" id="email" placeholder="your@email.com" />
-          </div>
-
-          <!-- PHONE -->
-          <div class="form-group">
-            <label>Phone Number <span class="req">*</span></label>
-            <input type="tel" id="phone" placeholder="(555) 000-0000" />
-          </div>
-
-          <!-- TICKET QTY -->
-          <div class="form-group">
-            <div class="section-label">Number of Tickets <span class="req">*</span></div>
-            <div class="qty-grid">
-              <div class="qty-card" id="adultCard">
-                <div class="qty-card-type">👤 Adult</div>
-                <div class="qty-card-price">$175</div>
-                <div class="qty-row">
-                  <button class="qty-btn" onclick="changeQty('adult',-1)">−</button>
-                  <span class="qty-num" id="adultQty">0</span>
-                  <button class="qty-btn" onclick="changeQty('adult',1)">+</button>
-                </div>
-              </div>
-              <div class="qty-card" id="childCard">
-                <div class="qty-card-type">👧 Child</div>
-                <div class="qty-card-price">$85</div>
-                <div class="qty-row">
-                  <button class="qty-btn" onclick="changeQty('child',-1)">−</button>
-                  <span class="qty-num" id="childQty">0</span>
-                  <button class="qty-btn" onclick="changeQty('child',1)">+</button>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <!-- PAYMENT METHOD -->
-          <div class="form-group">
-            <div class="section-label">Payment Method <span class="req">*</span></div>
-            <div class="pay-grid">
-
-              <div class="pay-option" id="pay-cashapp" onclick="selectPayment('CashApp')">
-                <div class="pay-icon" style="background:#00d632;">💵</div>
-                <div>
-                  <div class="pay-name">CashApp</div>
-                  <div class="pay-detail">(240) 678-4440</div>
-                </div>
-              </div>
-
-              <div class="pay-option" id="pay-zelle" onclick="selectPayment('Zelle')">
-                <div class="pay-icon" style="background:#6d1ed4;">💜</div>
-                <div>
-                  <div class="pay-name">Zelle</div>
-                  <div class="pay-detail">shirleymartin418@gmail.com</div>
-                </div>
-              </div>
-
-              <div class="pay-option" id="pay-plan" onclick="selectPayment('Payment Plan')">
-                <div class="pay-icon" style="background:var(--green);">📋</div>
-                <div>
-                  <div class="pay-name">Payment Plan</div>
-                  <div class="pay-detail">Contact Apostle Shirley Martin</div>
-                </div>
-              </div>
-
-            </div>
-
-            <!-- PLAN SUB-SELECTION -->
-            <div class="plan-sub-box" id="planSubBox">
-              <div class="plan-sub-title">Which method will you use for your payment plan?</div>
-              <div class="plan-sub-grid">
-                <div class="plan-sub-opt" id="plan-cashapp" onclick="selectPlanMethod('Payment Plan — CashApp')">
-                  <div class="pay-icon" style="background:#00d632;width:30px;height:30px;font-size:0.9rem;">💵</div>
-                  <div>
-                    <div class="plan-sub-name">CashApp</div>
-                    <div class="plan-sub-detail">(240) 678-4440</div>
-                  </div>
-                </div>
-                <div class="plan-sub-opt" id="plan-zelle" onclick="selectPlanMethod('Payment Plan — Zelle')">
-                  <div class="pay-icon" style="background:#6d1ed4;width:30px;height:30px;font-size:0.9rem;">💜</div>
-                  <div>
-                    <div class="plan-sub-name">Zelle</div>
-                    <div class="plan-sub-detail">shirleymartin418@gmail.com</div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <input type="hidden" id="paymentMethod" value="" />
-          </div>
-
-          <!-- DIETARY -->
-          <div class="form-group">
-            <label>Dietary Needs / Special Requests</label>
-            <textarea id="notes" placeholder="Vegan, vegetarian, accessibility needs, etc."></textarea>
-          </div>
-
-          <!-- TOTAL -->
-          <div class="total-box">
-            <span class="total-label">Total Due</span>
-            <span class="total-amt" id="totalAmount">$0.00</span>
-          </div>
-
-          <button class="submit-btn" id="submitBtn" onclick="submitForm()">✦ Complete Registration ✦</button>
-          <p class="form-note">Registration is confirmed once payment is received by <strong>Sept 2, 2026</strong>.</p>
-
+      <div class="jotform-wrap">
+        <div class="jotform-header">
+          <h2>&#10022; Complete Your Registration &#10022;</h2>
+          <p>Fill in your details below — all fields required</p>
         </div>
-
-        <!-- SUCCESS SCREEN -->
-        <div class="success-screen" id="successScreen">
-          <div class="success-icon">🙏</div>
-          <div class="success-title">You're Registered!</div>
-          <div class="success-summary" id="successSummary"></div>
-          <p class="success-msg">
-            Please send your payment to <b>Apostle Shirley Martin</b> before <b>September 2, 2026</b> to confirm your seat.<br/><br/>
-            <i>"Come celebrate God's faithfulness and the journey He has led us on!"</i> 💚✨
-          </p>
-        </div>
-
+        <iframe
+          class="jotform-frame"
+          src="https://form.jotform.com/261407315712147"
+          title="ELICM 16th Anniversary Registration"
+          scrolling="yes"
+          allowfullscreen
+        ></iframe>
       </div>
+
+      <!-- PAYMENT INSTRUCTIONS — no hyperlinks -->
+      <div class="payment-box">
+        <h3>How to Submit Your Payment</h3>
+        <div class="pay-divider"></div>
+
+        <div class="pay-method">
+          <div class="pay-method-icon">💵</div>
+          <div>
+            <div class="pay-method-name">CashApp</div>
+            <div class="pay-method-detail">Send payment to <span class="pay-handle">$Martin418</span><br>Include your full name in the memo</div>
+          </div>
+        </div>
+
+        <div class="pay-method">
+          <div class="pay-method-icon">🏦</div>
+          <div>
+            <div class="pay-method-name">Zelle</div>
+            <div class="pay-method-detail">Send payment to <span class="pay-handle">240-678-4440</span> or <span class="pay-handle">shirleymartin418@gmail.com</span><br>Include your full name in the memo</div>
+          </div>
+        </div>
+
+        <div class="deadline-notice">
+          <p>&#9203; Payment Deadline: September 2, 2026</p>
+          <span>All payments must be received by this date to confirm your registration</span>
+        </div>
+      </div>
+
     </div>
   </div>
 
-  <!-- FOOTER -->
-  <footer class="footer">
-    <div class="footer-quote">"Come celebrate God's faithfulness and the journey He has led us on!" 💛</div>
-    <div class="footer-tag">Eternal Life In Christ Ministries, Int'l · We Can't Wait to Celebrate With You!</div>
-  </footer>
-
   <script>
-    let adultCount = 0, childCount = 0, selectedPayment = '';
-
-    function startForm(type) {
+    function showForm() {
       document.getElementById('landingSection').style.display = 'none';
       document.getElementById('formSection').style.display = 'block';
       window.scrollTo({ top: 0, behavior: 'smooth' });
-      changeQty(type, 1);
     }
-
-    function goBack() {
+    function showLanding() {
       document.getElementById('formSection').style.display = 'none';
       document.getElementById('landingSection').style.display = 'block';
       window.scrollTo({ top: 0, behavior: 'smooth' });
-      resetForm();
-    }
-
-    function resetForm() {
-      adultCount = 0; childCount = 0; selectedPayment = '';
-      ['adultQty','childQty'].forEach(id => document.getElementById(id).textContent = '0');
-      ['adultCard','childCard'].forEach(id => document.getElementById(id).classList.remove('active'));
-      document.querySelectorAll('.pay-option').forEach(e => e.classList.remove('selected'));
-      document.querySelectorAll('.plan-sub-opt').forEach(e => e.classList.remove('selected'));
-      document.getElementById('planSubBox').classList.remove('show');
-      document.getElementById('paymentMethod').value = '';
-      document.getElementById('totalAmount').textContent = '$0.00';
-      ['firstName','lastName','email','phone','notes'].forEach(id => document.getElementById(id).value = '');
-      document.getElementById('regForm').style.display = 'block';
-      document.getElementById('successScreen').style.display = 'none';
-      const btn = document.getElementById('submitBtn');
-      btn.disabled = false;
-      btn.textContent = '✦ Complete Registration ✦';
-    }
-
-    function changeQty(type, delta) {
-      if (type === 'adult') {
-        adultCount = Math.max(0, adultCount + delta);
-        document.getElementById('adultQty').textContent = adultCount;
-        document.getElementById('adultCard').classList.toggle('active', adultCount > 0);
-      } else {
-        childCount = Math.max(0, childCount + delta);
-        document.getElementById('childQty').textContent = childCount;
-        document.getElementById('childCard').classList.toggle('active', childCount > 0);
-      }
-      document.getElementById('totalAmount').textContent = '$' + ((adultCount * 175) + (childCount * 85)).toFixed(2);
-    }
-
-    function selectPayment(method) {
-      selectedPayment = method;
-      document.getElementById('paymentMethod').value = method;
-      document.querySelectorAll('.pay-option').forEach(e => e.classList.remove('selected'));
-      document.getElementById({'CashApp':'pay-cashapp','Zelle':'pay-zelle','Payment Plan':'pay-plan'}[method]).classList.add('selected');
-      const sub = document.getElementById('planSubBox');
-      if (method === 'Payment Plan') {
-        sub.classList.add('show');
-      } else {
-        sub.classList.remove('show');
-        document.querySelectorAll('.plan-sub-opt').forEach(e => e.classList.remove('selected'));
-      }
-    }
-
-    function selectPlanMethod(method) {
-      selectedPayment = method;
-      document.getElementById('paymentMethod').value = method;
-      document.querySelectorAll('.plan-sub-opt').forEach(e => e.classList.remove('selected'));
-      document.getElementById({'Payment Plan — CashApp':'plan-cashapp','Payment Plan — Zelle':'plan-zelle'}[method]).classList.add('selected');
-    }
-
-    async function submitForm() {
-      const firstName = (document.getElementById('firstName').value || '').trim();
-      const lastName  = (document.getElementById('lastName').value  || '').trim();
-      const email     = (document.getElementById('email').value     || '').trim();
-      const phone     = (document.getElementById('phone').value     || '').trim();
-      const notes     = (document.getElementById('notes').value     || '').trim();
-
-      if (!firstName || !lastName) { alert('Please enter your full name.'); return; }
-      if (!email)  { alert('Please enter your email address.'); return; }
-      if (!phone)  { alert('Please enter your phone number.'); return; }
-      if (adultCount === 0 && childCount === 0) { alert('Please select at least one ticket.'); return; }
-      if (!selectedPayment || selectedPayment === 'Payment Plan') {
-        alert(selectedPayment === 'Payment Plan'
-          ? 'Please choose CashApp or Zelle under the Payment Plan option.'
-          : 'Please select a payment method.');
-        return;
-      }
-
-      const total = (adultCount * 175) + (childCount * 85);
-      const btn = document.getElementById('submitBtn');
-      btn.disabled = true;
-      btn.textContent = 'Submitting...';
-
-      // Create hidden iframe for CORS-safe Jotform submission
-      let iframe = document.getElementById('jfTarget');
-      if (!iframe) {
-        iframe = document.createElement('iframe');
-        iframe.name = 'jfTarget';
-        iframe.id   = 'jfTarget';
-        iframe.style.display = 'none';
-        document.body.appendChild(iframe);
-      }
-
-      // Build Jotform POST form
-      const jfForm = document.createElement('form');
-      jfForm.method = 'POST';
-      jfForm.action = 'https://submit.jotform.com/submit/261407315712147/';
-      jfForm.target = 'jfTarget';
-      jfForm.style.display = 'none';
-      const jfFields = {
-        'submission[1][first]': firstName,
-        'submission[1][last]':  lastName,
-        'submission[2]':         email,
-        'submission[3][full]':   phone,
-        'submission[4]':         String(adultCount),
-        'submission[5]':         String(childCount),
-        'submission[6]':         selectedPayment,
-        'submission[7]':         notes,
-        'formID':                '261407315712147',
-        'simple_spc':            '261407315712147-261407315712147'
-      };
-      for (const [k, v] of Object.entries(jfFields)) {
-        const inp = document.createElement('input');
-        inp.type = 'hidden'; inp.name = k; inp.value = v;
-        jfForm.appendChild(inp);
-      }
-      document.body.appendChild(jfForm);
-      jfForm.submit();
-      setTimeout(() => { try { document.body.removeChild(jfForm); } catch(e){} }, 2000);
-
-      // EmailJS confirmation (best-effort, non-blocking)
-      try {
-        fetch("https://api.emailjs.com/api/v1.0/email/send", {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({
-            service_id: "service_lrg9iws",
-            template_id: "template_mwohdg8",
-            user_id: "GcBbWc4OBpPHY0Ckv",
-            accessToken: "UiuyULlRBdFpEsTfXh24W",
-            template_params: {
-              to_name:        firstName + " " + lastName,
-              to_email:       email,
-              phone:          phone,
-              adult_tickets:  adultCount + " x $175",
-              child_tickets:  childCount + " x $85",
-              total:          "$" + total.toFixed(2),
-              payment_method: selectedPayment,
-              deadline:       "September 2, 2026"
-            }
-          })
-        }).catch(e => console.log('EmailJS:', e));
-      } catch(e) { console.log('EmailJS error:', e); }
-
-      // Always show success screen
-      document.getElementById('regForm').style.display = 'none';
-      document.getElementById('successSummary').innerHTML =
-        '<div class="sum-row"><span class="sum-label">Name</span><span class="sum-value">' + firstName + ' ' + lastName + '</span></div>' +
-        '<div class="sum-row"><span class="sum-label">Adult Tickets</span><span class="sum-value">' + adultCount + ' × $175</span></div>' +
-        '<div class="sum-row"><span class="sum-label">Child Tickets</span><span class="sum-value">' + childCount + ' × $85</span></div>' +
-        '<div class="sum-row"><span class="sum-label">Total Due</span><span class="sum-value">$' + total.toFixed(2) + '</span></div>' +
-        '<div class="sum-row"><span class="sum-label">Payment Via</span><span class="sum-value">' + selectedPayment + '</span></div>';
-      document.getElementById('successScreen').style.display = 'block';
-      window.scrollTo({ top: 0, behavior: 'smooth' });
     }
   </script>
+
 </body>
 </html>
