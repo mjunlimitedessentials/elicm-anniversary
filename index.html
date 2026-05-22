@@ -391,33 +391,20 @@
         status: 'registered'
       };
 
-      fetch('https://app.base44.com/api/apps/6a029d2b5cc37d5b54f861bf/entities/ELICMRegistration', {
-        method: 'POST',
-        headers: {'Content-Type':'application/json','x-api-key': 'guest'},
-        body: JSON.stringify(payload)
-      }).catch(function(e){ console.log('DB save note:', e); });
-
-      // EmailJS confirmation
-      fetch('https://api.emailjs.com/api/v1.0/email/send', {
+      fetch('https://app.base44.com/api/apps/6a029d2b5cc37d5b54f861bf/functions/elicmSubmit', {
         method: 'POST',
         headers: {'Content-Type':'application/json'},
         body: JSON.stringify({
-          service_id: 'service_lrg9iws',
-          template_id: 'template_mwohdg8',
-          user_id: 'GcBbWc4OBpPHY0Ckv',
-          accessToken: 'UiuyULlRBdFpEsTfXh24W',
-          template_params: {
-            to_name: firstName + ' ' + lastName,
-            to_email: email,
-            phone: phone,
-            adult_tickets: adultCount + ' x $175',
-            child_tickets: childCount + ' x $85',
-            total: '$' + total,
-            payment_method: selectedPay,
-            deadline: 'September 2, 2026'
-          }
+          first_name: firstName,
+          last_name: lastName,
+          email: email,
+          phone: phone,
+          adult_tickets: adultCount,
+          child_tickets: childCount,
+          payment_method: selectedPay,
+          dietary_notes: notes
         })
-      }).catch(function(e){ console.log('EmailJS note:', e); });
+      }).catch(function(e){ console.log('Submit error:', e); });
 
       // Always show success
       document.getElementById('formSection').style.display = 'none';
