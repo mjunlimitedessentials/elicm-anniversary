@@ -438,11 +438,11 @@
     }
 
     async function submitForm() {
-      const firstName = document.getElementById('firstName').value.trim();
-      const lastName  = document.getElementById('lastName').value.trim();
-      const email     = document.getElementById('email').value.trim();
-      const phone     = document.getElementById('phone').value.trim();
-      const notes     = document.getElementById('notes').value.trim();
+      const firstName = (document.getElementById('firstName').value || '').trim();
+      const lastName  = (document.getElementById('lastName').value  || '').trim();
+      const email     = (document.getElementById('email').value     || '').trim();
+      const phone     = (document.getElementById('phone').value     || '').trim();
+      const notes     = (document.getElementById('notes').value     || '').trim();
 
       if (!firstName || !lastName) { alert('Please enter your full name.'); return; }
       if (!email)  { alert('Please enter your email address.'); return; }
@@ -450,52 +450,55 @@
       if (adultCount === 0 && childCount === 0) { alert('Please select at least one ticket.'); return; }
       if (!selectedPayment || selectedPayment === 'Payment Plan') {
         alert(selectedPayment === 'Payment Plan'
-          ? 'Please select CashApp or Zelle for your payment plan.'
+          ? 'Please choose CashApp or Zelle under the Payment Plan option.'
           : 'Please select a payment method.');
         return;
       }
 
       const total = (adultCount * 175) + (childCount * 85);
       const btn = document.getElementById('submitBtn');
-      btn.disabled = true; btn.textContent = 'Submitting...';
+      btn.disabled = true;
+      btn.textContent = 'Submitting...';
 
+      // Create hidden iframe for CORS-safe Jotform submission
+      let iframe = document.getElementById('jfTarget');
+      if (!iframe) {
+        iframe = document.createElement('iframe');
+        iframe.name = 'jfTarget';
+        iframe.id   = 'jfTarget';
+        iframe.style.display = 'none';
+        document.body.appendChild(iframe);
+      }
+
+      // Build Jotform POST form
+      const jfForm = document.createElement('form');
+      jfForm.method = 'POST';
+      jfForm.action = 'https://submit.jotform.com/submit/261407315712147/';
+      jfForm.target = 'jfTarget';
+      jfForm.style.display = 'none';
+      const jfFields = {
+        'submission[1][first]': firstName,
+        'submission[1][last]':  lastName,
+        'submission[2]':         email,
+        'submission[3][full]':   phone,
+        'submission[4]':         String(adultCount),
+        'submission[5]':         String(childCount),
+        'submission[6]':         selectedPayment,
+        'submission[7]':         notes,
+        'formID':                '261407315712147',
+        'simple_spc':            '261407315712147-261407315712147'
+      };
+      for (const [k, v] of Object.entries(jfFields)) {
+        const inp = document.createElement('input');
+        inp.type = 'hidden'; inp.name = k; inp.value = v;
+        jfForm.appendChild(inp);
+      }
+      document.body.appendChild(jfForm);
+      jfForm.submit();
+      setTimeout(() => { try { document.body.removeChild(jfForm); } catch(e){} }, 2000);
+
+      // EmailJS confirmation (best-effort, non-blocking)
       try {
-        // 1. Submit to Jotform via hidden iframe (no-CORS safe, fire-and-forget)
-        const jfForm = document.createElement('form');
-        jfForm.method = 'POST';
-        jfForm.action = 'https://submit.jotform.com/submit/261407315712147/';
-        jfForm.target = 'jfTarget';
-        const fields = {
-          'submission[1][first]': firstName,
-          'submission[1][last]':  lastName,
-          'submission[2]':         email,
-          'submission[3][full]':   phone,
-          'submission[4]':         String(adultCount),
-          'submission[5]':         String(childCount),
-          'submission[6]':         selectedPayment,
-          'submission[7]':         notes || '',
-          'formID':                '261407315712147',
-          'simple_spc':            '261407315712147-261407315712147'
-        };
-        for (const [k, v] of Object.entries(fields)) {
-          const inp = document.createElement('input');
-          inp.type = 'hidden'; inp.name = k; inp.value = v;
-          jfForm.appendChild(inp);
-        }
-        // Create hidden iframe to receive the response silently
-        let iframe = document.getElementById('jfTarget');
-        if (!iframe) {
-          iframe = document.createElement('iframe');
-          iframe.name = 'jfTarget';
-          iframe.id = 'jfTarget';
-          iframe.style.display = 'none';
-          document.body.appendChild(iframe);
-        }
-        document.body.appendChild(jfForm);
-        jfForm.submit();
-        document.body.removeChild(jfForm);
-
-        // 2. Send EmailJS confirmation (best-effort)
         fetch("https://api.emailjs.com/api/v1.0/email/send", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
@@ -505,28 +508,27 @@
             user_id: "GcBbWc4OBpPHY0Ckv",
             accessToken: "UiuyULlRBdFpEsTfXh24W",
             template_params: {
-              to_name: firstName + " " + lastName,
-              to_email: email,
-              phone: phone,
-              adult_tickets: adultCount + " x $175",
-              child_tickets: childCount + " x $85",
-              total: "$" + total.toFixed(2),
+              to_name:        firstName + " " + lastName,
+              to_email:       email,
+              phone:          phone,
+              adult_tickets:  adultCount + " x $175",
+              child_tickets:  childCount + " x $85",
+              total:          "$" + total.toFixed(2),
               payment_method: selectedPayment,
-              deadline: "September 2, 2026"
+              deadline:       "September 2, 2026"
             }
           })
-        }).catch(e => console.log('EmailJS note:', e));
+        }).catch(e => console.log('EmailJS:', e));
+      } catch(e) { console.log('EmailJS error:', e); }
 
-      } catch(e) { console.log('Submit note:', e); }
-
+      // Always show success screen
       document.getElementById('regForm').style.display = 'none';
-      document.getElementById('successSummary').innerHTML = `
-        <div class="sum-row"><span class="sum-label">Name</span><span class="sum-value">${firstName} ${lastName}</span></div>
-        <div class="sum-row"><span class="sum-label">Adult Tickets</span><span class="sum-value">${adultCount} × $175</span></div>
-        <div class="sum-row"><span class="sum-label">Child Tickets</span><span class="sum-value">${childCount} × $85</span></div>
-        <div class="sum-row"><span class="sum-label">Total Due</span><span class="sum-value">$${total.toFixed(2)}</span></div>
-        <div class="sum-row"><span class="sum-label">Payment Via</span><span class="sum-value">${selectedPayment}</span></div>
-      `;
+      document.getElementById('successSummary').innerHTML =
+        '<div class="sum-row"><span class="sum-label">Name</span><span class="sum-value">' + firstName + ' ' + lastName + '</span></div>' +
+        '<div class="sum-row"><span class="sum-label">Adult Tickets</span><span class="sum-value">' + adultCount + ' × $175</span></div>' +
+        '<div class="sum-row"><span class="sum-label">Child Tickets</span><span class="sum-value">' + childCount + ' × $85</span></div>' +
+        '<div class="sum-row"><span class="sum-label">Total Due</span><span class="sum-value">$' + total.toFixed(2) + '</span></div>' +
+        '<div class="sum-row"><span class="sum-label">Payment Via</span><span class="sum-value">' + selectedPayment + '</span></div>';
       document.getElementById('successScreen').style.display = 'block';
       window.scrollTo({ top: 0, behavior: 'smooth' });
     }
