@@ -129,13 +129,14 @@
     .sum-label{color:#888;font-size:0.78rem;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;}
     .sum-value{color:#1a4a2e;font-weight:700;}
 
+    @media(max-width:600px){ .counter-grid{grid-template-columns:1fr !important;} .counter-card{max-width:100%;} }
     @media(max-width:480px){
       .ticket-cards{gap:1rem;}
       .tc-price{font-size:2.2rem;}
       .pay-options{grid-template-columns:1fr 1fr 1fr;}
       .ticket-counter-grid{grid-template-columns:1fr 1fr;}
       .form-row{grid-template-columns:1fr;}
-      .counter-grid{grid-template-columns:1fr !important;max-width:280px;margin-left:auto;margin-right:auto;}
+      .counter-grid{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-bottom:1.2rem;}
     }
   </style>
 </head>
