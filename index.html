@@ -138,6 +138,24 @@
       .form-row{grid-template-columns:1fr;}
       .counter-grid{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-bottom:1.2rem;}
     }
+  
+    /* MOBILE FIX - force stack ticket cards */
+    @media screen and (max-width: 640px) {
+      body, html { overflow-x: hidden !important; }
+      .form-section { overflow-x: hidden !important; padding: 1rem !important; }
+      .counter-grid { 
+        display: flex !important; 
+        flex-direction: column !important; 
+        align-items: center !important;
+        width: 100% !important;
+      }
+      .counter-card { 
+        width: 100% !important; 
+        max-width: 320px !important;
+        box-sizing: border-box !important;
+      }
+    }
+
   </style>
 </head>
 <body>
