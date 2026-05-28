@@ -118,17 +118,6 @@
     .deadline-notice p{color:#f5c842;font-size:0.85rem;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;}
     .deadline-notice span{color:rgba(249,244,236,0.85);font-size:0.8rem;display:block;margin-top:0.3rem;font-style:italic;}
 
-    /* SUCCESS */
-    #successSection{display:none;}
-    .success-box{background:#fff;border:2px solid #d4af37;border-radius:20px;padding:2.5rem 2rem;text-align:center;box-shadow:0 4px 30px rgba(26,74,46,0.12);}
-    .success-icon{font-size:4rem;margin-bottom:1rem;}
-    .success-title{font-family:'Playfair Display',serif;font-size:1.8rem;font-weight:900;color:#1a4a2e;margin-bottom:0.5rem;}
-    .success-sub{font-family:'Cormorant Garamond',serif;font-size:1.05rem;font-style:italic;color:#777;margin-bottom:2rem;}
-    .sum-row{display:flex;justify-content:space-between;padding:0.65rem 0;border-bottom:1px solid #ede8dc;font-size:0.9rem;}
-    .sum-row:last-child{border-bottom:none;}
-    .sum-label{color:#888;font-size:0.78rem;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;}
-    .sum-value{color:#1a4a2e;font-weight:700;}
-
     @media(max-width:600px){ .counter-grid{grid-template-columns:1fr !important;} .counter-card{max-width:100%;} }
     @media(max-width:480px){
       .ticket-cards{gap:1rem;}
@@ -350,20 +339,6 @@
     </div>
   </div>
 
-  <!-- SUCCESS SECTION -->
-  <div id="successSection">
-    <div class="section-wrap">
-      <div class="success-box">
-        <div class="success-icon">&#127881;</div>
-        <div class="success-title">You&#39;re Registered!</div>
-        <div class="success-sub">Thank you for registering for the 16th Church Anniversary</div>
-        <div id="successSummary"></div>
-        <br>
-        <p style="font-size:0.85rem;color:#888;font-style:italic;margin-top:1rem;">A confirmation email has been sent to your inbox. Please submit payment by September 2, 2026.</p>
-      </div>
-    </div>
-  </div>
-
   <script>
     var adultCount = 0;
     var childCount = 0;
@@ -374,13 +349,11 @@
       if (type === 'child' && childCount === 0) { changeCount('child', 1); }
       document.getElementById('landingSection').style.display = 'none';
       document.getElementById('formSection').style.display = 'block';
-      document.getElementById('successSection').style.display = 'none';
       window.scrollTo({top:0,behavior:'smooth'});
     }
 
     function showLanding() {
       document.getElementById('formSection').style.display = 'none';
-      document.getElementById('successSection').style.display = 'none';
       document.getElementById('landingSection').style.display = 'block';
       window.scrollTo({top:0,behavior:'smooth'});
     }
@@ -419,63 +392,26 @@
       if (adultCount === 0 && childCount === 0) { alert('Please add at least one ticket.'); return; }
       if (!selectedPay) { alert('Please select a payment method.'); return; }
 
-      var total = (adultCount * 175) + (childCount * 85);
       var btn = document.getElementById('submitBtn');
       btn.disabled = true;
-      btn.textContent = 'Submitting...';
+      btn.textContent = 'Finalizing...';
 
-      // Submit registration into JotForm (form 261407315712147)
       var digits = phone.replace(/\D/g, '');
       if (digits.length === 11 && digits.charAt(0) === '1') { digits = digits.slice(1); }
 
-      var jfTarget = document.createElement('iframe');
-      jfTarget.name = 'jotformTarget';
-      jfTarget.style.display = 'none';
-      document.body.appendChild(jfTarget);
-
-      var jfForm = document.createElement('form');
-      jfForm.action = 'https://submit.jotform.com/submit/261407315712147';
-      jfForm.method = 'POST';
-      jfForm.target = 'jotformTarget';
-      jfForm.style.display = 'none';
-      jfForm.acceptCharset = 'utf-8';
-
-      var jfFields = {
-        'formID': '261407315712147',
-        'simple_spc': '261407315712147',
-        'q1_fullName[first]': firstName,
-        'q1_fullName[last]': lastName,
-        'q2_emailAddress': email,
-        'q3_phoneNumber[area]': digits.slice(0, 3),
-        'q3_phoneNumber[phone]': digits.slice(3),
-        'q4_numberOf': String(adultCount),
-        'q5_numberOf5': String(childCount),
-        'q6_paymentMethod': selectedPay,
-        'q7_dietaryNeeds': notes
-      };
-      Object.keys(jfFields).forEach(function (name) {
-        var input = document.createElement('input');
-        input.type = 'hidden';
-        input.name = name;
-        input.value = jfFields[name];
-        jfForm.appendChild(input);
-      });
-
-      document.body.appendChild(jfForm);
-      jfForm.submit();
-
-      // Show success after the submission has been dispatched
-      setTimeout(function () {
-        document.getElementById('formSection').style.display = 'none';
-        document.getElementById('successSection').style.display = 'block';
-        document.getElementById('successSummary').innerHTML =
-          '<div class="sum-row"><span class="sum-label">Name</span><span class="sum-value">' + firstName + ' ' + lastName + '</span></div>' +
-          '<div class="sum-row"><span class="sum-label">Adult Tickets</span><span class="sum-value">' + adultCount + ' x $175</span></div>' +
-          '<div class="sum-row"><span class="sum-label">Child Tickets</span><span class="sum-value">' + childCount + ' x $85</span></div>' +
-          '<div class="sum-row"><span class="sum-label">Total Due</span><span class="sum-value">$' + total + '</span></div>' +
-          '<div class="sum-row"><span class="sum-label">Payment Via</span><span class="sum-value">' + selectedPay + '</span></div>';
-        window.scrollTo({top:0,behavior:'smooth'});
-      }, 900);
+      // Hand off to JotForm (prefilled) so the final submission is recorded natively
+      var params = [
+        'fullName[first]=' + encodeURIComponent(firstName),
+        'fullName[last]=' + encodeURIComponent(lastName),
+        'emailAddress=' + encodeURIComponent(email),
+        'phoneNumber[area]=' + encodeURIComponent(digits.slice(0, 3)),
+        'phoneNumber[phone]=' + encodeURIComponent(digits.slice(3)),
+        'numberOf=' + encodeURIComponent(String(adultCount)),
+        'numberOf5=' + encodeURIComponent(String(childCount)),
+        'paymentMethod=' + encodeURIComponent(selectedPay),
+        'dietaryNeeds=' + encodeURIComponent(notes)
+      ];
+      window.location.href = 'https://form.jotform.com/261407315712147?' + params.join('&');
     }
   </script>
 
