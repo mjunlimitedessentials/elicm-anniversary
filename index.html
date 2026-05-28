@@ -58,7 +58,7 @@
     .deadline-pill span{display:inline-block;background:linear-gradient(135deg,#1a4a2e,#0f3320);border:1px solid #b8962e;color:#f5c842;font-size:0.8rem;font-weight:700;letter-spacing:0.08em;padding:0.6rem 1.4rem;border-radius:30px;}
 
     /* FORM SECTION */
-    #formSection{display:block;}
+    #formSection{display:none;}
     .back-btn{display:inline-flex;align-items:center;gap:0.4rem;background:none;border:1.5px solid #1a4a2e;color:#1a4a2e;font-family:'Lato',sans-serif;font-size:0.8rem;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;padding:0.45rem 1rem;border-radius:20px;cursor:pointer;margin-bottom:1.8rem;transition:all 0.2s;}
     .back-btn:hover{background:#1a4a2e;color:white;}
 
@@ -118,6 +118,16 @@
     .deadline-notice p{color:#f5c842;font-size:0.85rem;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;}
     .deadline-notice span{color:rgba(249,244,236,0.85);font-size:0.8rem;display:block;margin-top:0.3rem;font-style:italic;}
 
+    /* SUCCESS */
+    #successSection{display:none;}
+    .success-box{background:#fff;border:2px solid #d4af37;border-radius:20px;padding:2.5rem 2rem;text-align:center;box-shadow:0 4px 30px rgba(26,74,46,0.12);}
+    .success-icon{font-size:4rem;margin-bottom:1rem;}
+    .success-title{font-family:'Playfair Display',serif;font-size:1.8rem;font-weight:900;color:#1a4a2e;margin-bottom:0.5rem;}
+    .success-sub{font-family:'Cormorant Garamond',serif;font-size:1.05rem;font-style:italic;color:#777;margin-bottom:2rem;}
+    .sum-row{display:flex;justify-content:space-between;padding:0.65rem 0;border-bottom:1px solid #ede8dc;font-size:0.9rem;}
+    .sum-row:last-child{border-bottom:none;}
+    .sum-label{color:#888;font-size:0.78rem;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;}
+    .sum-value{color:#1a4a2e;font-weight:700;}
 
     @media(max-width:600px){ .counter-grid{grid-template-columns:1fr !important;} .counter-card{max-width:100%;} }
     @media(max-width:480px){
@@ -128,19 +138,19 @@
       .form-row{grid-template-columns:1fr;}
       .counter-grid{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-bottom:1.2rem;}
     }
-  
+
     /* MOBILE FIX - force stack ticket cards */
     @media screen and (max-width: 640px) {
       body, html { overflow-x: hidden !important; }
       .form-section { overflow-x: hidden !important; padding: 1rem !important; }
-      .counter-grid { 
-        display: flex !important; 
-        flex-direction: column !important; 
+      .counter-grid {
+        display: flex !important;
+        flex-direction: column !important;
         align-items: center !important;
         width: 100% !important;
       }
-      .counter-card { 
-        width: 100% !important; 
+      .counter-card {
+        width: 100% !important;
         max-width: 320px !important;
         box-sizing: border-box !important;
       }
@@ -177,7 +187,7 @@
       <div class="section-sub">Select your ticket type below to begin registration</div>
       <div class="divider"></div>
       <div class="ticket-cards">
-        <div class="ticket-card" onclick="scrollToForm()">
+        <div class="ticket-card" onclick="showForm('adult')">
           <div class="tc-icon">
             <svg width="54" height="54" viewBox="0 0 54 54" fill="none" xmlns="http://www.w3.org/2000/svg">
               <circle cx="27" cy="27" r="25" stroke="#d4af37" stroke-width="1.5" fill="none" opacity="0.4"/>
@@ -196,7 +206,7 @@
           <div class="tc-note">Ages 13 &amp; up</div>
           <div class="tc-cta">Register Now</div>
         </div>
-        <div class="ticket-card" onclick="scrollToForm()">
+        <div class="ticket-card" onclick="showForm('child')">
           <div class="tc-icon">
             <svg width="54" height="54" viewBox="0 0 54 54" fill="none" xmlns="http://www.w3.org/2000/svg">
               <circle cx="27" cy="27" r="25" stroke="#d4af37" stroke-width="1.5" fill="none" opacity="0.4"/>
@@ -226,7 +236,7 @@
   <!-- FORM SECTION -->
   <div id="formSection">
     <div class="section-wrap">
-      <button class="back-btn" onclick="window.scrollTo({top:0,behavior:'smooth'})">&#8592; Back to Tickets</button>
+      <button class="back-btn" onclick="showLanding()">&#8592; Back to Tickets</button>
 
       <div class="form-box">
         <div class="form-box-header">
@@ -234,17 +244,83 @@
           <p>Fill in all required fields below</p>
         </div>
 
-        <iframe
-          id="JotFormIFrame-261407315712147"
-          title="ELICM 16th Anniversary Registration"
-          allow="geolocation; microphone; camera; fullscreen; payment"
-          src="https://form.jotform.com/261407315712147"
-          frameborder="0"
-          style="min-width:100%;max-width:100%;height:1100px;border:none;background:transparent;"
-          scrolling="no">
-        </iframe>
-        <script src="https://cdn.jotfor.ms/s/umd/latest/for-form-embed-handler.js"></script>
-        <script>window.jotformEmbedHandler("iframe[id='JotFormIFrame-261407315712147']", "https://form.jotform.com")</script>
+        <div class="form-row">
+          <div class="form-group">
+            <label>First Name <span class="req">*</span></label>
+            <input type="text" id="firstName" placeholder="First name" />
+          </div>
+          <div class="form-group">
+            <label>Last Name <span class="req">*</span></label>
+            <input type="text" id="lastName" placeholder="Last name" />
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label>Email Address <span class="req">*</span></label>
+          <input type="email" id="email" placeholder="your@email.com" />
+        </div>
+
+        <div class="form-group">
+          <label>Phone Number <span class="req">*</span></label>
+          <input type="tel" id="phone" placeholder="(555) 555-5555" />
+        </div>
+
+        <!-- TICKET COUNTERS -->
+        <div class="form-group">
+          <label>Number of Tickets <span class="req">*</span></label>
+        </div>
+        <div class="ticket-counter-grid">
+          <div class="counter-card" id="adultCard">
+            <div class="counter-label">Adult</div>
+            <div class="counter-price">$175</div>
+            <div class="counter-note">Ages 13 &amp; up</div>
+            <div class="counter-controls">
+              <button class="counter-btn" onclick="changeCount('adult',-1)">&#8722;</button>
+              <div class="counter-num" id="adultNum">0</div>
+              <button class="counter-btn" onclick="changeCount('adult',1)">&#43;</button>
+            </div>
+          </div>
+          <div class="counter-card" id="childCard">
+            <div class="counter-label">Child</div>
+            <div class="counter-price">$85</div>
+            <div class="counter-note">Ages 12 &amp; under</div>
+            <div class="counter-controls">
+              <button class="counter-btn" onclick="changeCount('child',-1)">&#8722;</button>
+              <div class="counter-num" id="childNum">0</div>
+              <button class="counter-btn" onclick="changeCount('child',1)">&#43;</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- PAYMENT METHOD -->
+        <span class="pay-label">Payment Method <span class="req">*</span></span>
+        <div class="pay-options">
+          <div class="pay-opt" id="opt-cashapp" onclick="selectPay('CashApp')">
+            <div class="pay-opt-icon">&#128181;</div>
+            <div class="pay-opt-name">CashApp</div>
+          </div>
+          <div class="pay-opt" id="opt-zelle" onclick="selectPay('Zelle')">
+            <div class="pay-opt-icon">&#127974;</div>
+            <div class="pay-opt-name">Zelle</div>
+          </div>
+          <div class="pay-opt" id="opt-plan" onclick="selectPay('Payment Plan')">
+            <div class="pay-opt-icon">&#128197;</div>
+            <div class="pay-opt-name">Pay Plan</div>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label>Dietary Needs / Special Requests</label>
+          <textarea id="notes" rows="3" placeholder="Optional — let us know if you have any special needs"></textarea>
+        </div>
+
+        <!-- TOTAL -->
+        <div class="total-bar">
+          <span class="total-label">Total Due</span>
+          <span class="total-amount" id="totalAmount">$0</span>
+        </div>
+
+        <button class="submit-btn" id="submitBtn" onclick="submitForm()">Complete Registration</button>
       </div>
 
       <!-- PAYMENT INSTRUCTIONS -->
@@ -274,10 +350,132 @@
     </div>
   </div>
 
+  <!-- SUCCESS SECTION -->
+  <div id="successSection">
+    <div class="section-wrap">
+      <div class="success-box">
+        <div class="success-icon">&#127881;</div>
+        <div class="success-title">You&#39;re Registered!</div>
+        <div class="success-sub">Thank you for registering for the 16th Church Anniversary</div>
+        <div id="successSummary"></div>
+        <br>
+        <p style="font-size:0.85rem;color:#888;font-style:italic;margin-top:1rem;">A confirmation email has been sent to your inbox. Please submit payment by September 2, 2026.</p>
+      </div>
+    </div>
+  </div>
+
   <script>
-    function scrollToForm() {
-      var el = document.getElementById('formSection');
-      if (el) { el.scrollIntoView({behavior:'smooth', block:'start'}); }
+    var adultCount = 0;
+    var childCount = 0;
+    var selectedPay = '';
+
+    function showForm(type) {
+      if (type === 'adult' && adultCount === 0) { changeCount('adult', 1); }
+      if (type === 'child' && childCount === 0) { changeCount('child', 1); }
+      document.getElementById('landingSection').style.display = 'none';
+      document.getElementById('formSection').style.display = 'block';
+      document.getElementById('successSection').style.display = 'none';
+      window.scrollTo({top:0,behavior:'smooth'});
+    }
+
+    function showLanding() {
+      document.getElementById('formSection').style.display = 'none';
+      document.getElementById('successSection').style.display = 'none';
+      document.getElementById('landingSection').style.display = 'block';
+      window.scrollTo({top:0,behavior:'smooth'});
+    }
+
+    function changeCount(type, delta) {
+      if (type === 'adult') {
+        adultCount = Math.max(0, adultCount + delta);
+        document.getElementById('adultNum').textContent = adultCount;
+        document.getElementById('adultCard').className = 'counter-card' + (adultCount > 0 ? ' has-tickets' : '');
+      } else {
+        childCount = Math.max(0, childCount + delta);
+        document.getElementById('childNum').textContent = childCount;
+        document.getElementById('childCard').className = 'counter-card' + (childCount > 0 ? ' has-tickets' : '');
+      }
+      var total = (adultCount * 175) + (childCount * 85);
+      document.getElementById('totalAmount').textContent = '$' + total;
+    }
+
+    function selectPay(method) {
+      selectedPay = method;
+      document.getElementById('opt-cashapp').className = 'pay-opt' + (method === 'CashApp' ? ' selected' : '');
+      document.getElementById('opt-zelle').className = 'pay-opt' + (method === 'Zelle' ? ' selected' : '');
+      document.getElementById('opt-plan').className = 'pay-opt' + (method === 'Payment Plan' ? ' selected' : '');
+    }
+
+    function submitForm() {
+      var firstName = (document.getElementById('firstName').value || '').trim();
+      var lastName  = (document.getElementById('lastName').value  || '').trim();
+      var email     = (document.getElementById('email').value     || '').trim();
+      var phone     = (document.getElementById('phone').value     || '').trim();
+      var notes     = (document.getElementById('notes').value     || '').trim();
+
+      if (!firstName || !lastName) { alert('Please enter your full name.'); return; }
+      if (!email)  { alert('Please enter your email address.'); return; }
+      if (!phone)  { alert('Please enter your phone number.'); return; }
+      if (adultCount === 0 && childCount === 0) { alert('Please add at least one ticket.'); return; }
+      if (!selectedPay) { alert('Please select a payment method.'); return; }
+
+      var total = (adultCount * 175) + (childCount * 85);
+      var btn = document.getElementById('submitBtn');
+      btn.disabled = true;
+      btn.textContent = 'Submitting...';
+
+      // Submit registration into JotForm (form 261407315712147)
+      var digits = phone.replace(/\D/g, '');
+      if (digits.length === 11 && digits.charAt(0) === '1') { digits = digits.slice(1); }
+
+      var jfTarget = document.createElement('iframe');
+      jfTarget.name = 'jotformTarget';
+      jfTarget.style.display = 'none';
+      document.body.appendChild(jfTarget);
+
+      var jfForm = document.createElement('form');
+      jfForm.action = 'https://submit.jotform.com/submit/261407315712147';
+      jfForm.method = 'POST';
+      jfForm.target = 'jotformTarget';
+      jfForm.style.display = 'none';
+      jfForm.acceptCharset = 'utf-8';
+
+      var jfFields = {
+        'formID': '261407315712147',
+        'simple_spc': '261407315712147',
+        'q1_fullName[first]': firstName,
+        'q1_fullName[last]': lastName,
+        'q2_emailAddress': email,
+        'q3_phoneNumber[area]': digits.slice(0, 3),
+        'q3_phoneNumber[phone]': digits.slice(3),
+        'q4_numberOf': String(adultCount),
+        'q5_numberOf5': String(childCount),
+        'q6_paymentMethod': selectedPay,
+        'q7_dietaryNeeds': notes
+      };
+      Object.keys(jfFields).forEach(function (name) {
+        var input = document.createElement('input');
+        input.type = 'hidden';
+        input.name = name;
+        input.value = jfFields[name];
+        jfForm.appendChild(input);
+      });
+
+      document.body.appendChild(jfForm);
+      jfForm.submit();
+
+      // Show success after the submission has been dispatched
+      setTimeout(function () {
+        document.getElementById('formSection').style.display = 'none';
+        document.getElementById('successSection').style.display = 'block';
+        document.getElementById('successSummary').innerHTML =
+          '<div class="sum-row"><span class="sum-label">Name</span><span class="sum-value">' + firstName + ' ' + lastName + '</span></div>' +
+          '<div class="sum-row"><span class="sum-label">Adult Tickets</span><span class="sum-value">' + adultCount + ' x $175</span></div>' +
+          '<div class="sum-row"><span class="sum-label">Child Tickets</span><span class="sum-value">' + childCount + ' x $85</span></div>' +
+          '<div class="sum-row"><span class="sum-label">Total Due</span><span class="sum-value">$' + total + '</span></div>' +
+          '<div class="sum-row"><span class="sum-label">Payment Via</span><span class="sum-value">' + selectedPay + '</span></div>';
+        window.scrollTo({top:0,behavior:'smooth'});
+      }, 900);
     }
   </script>
 
