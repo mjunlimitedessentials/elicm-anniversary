@@ -1,0 +1,69 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id        String   @id @default(cuid())
+  clerkId   String   @unique
+  email     String
+  createdAt DateTime @default(now())
+
+  onboarding OnboardingResponse?
+  videoJobs  VideoJob[]
+}
+
+model OnboardingResponse {
+  id                String   @id @default(cuid())
+  userId            String   @unique
+  user              User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  // Step 2: "Pick your focus" quiz answers, keyed by question id.
+  // Stored as JSON so the question set can evolve without a migration.
+  quizAnswers       Json
+
+  // Step 3: ministry / brand profile
+  ministryName      String?
+  ministrySize      String?
+  brandColor        String?
+
+  // Step 4: plan
+  plan              String?
+
+  completedAt       DateTime?
+  createdAt         DateTime @default(now())
+  updatedAt         DateTime @updatedAt
+}
+
+enum VideoJobStatus {
+  queued
+  generating
+  rendering
+  completed
+  failed
+}
+
+model VideoJob {
+  id             String         @id @default(cuid())
+  userId         String
+  user           User           @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  contentType    String // e.g. "bible-videos" | "sermon-jam" | "social-media" | "kids-ministry"
+  prompt         String
+  style          String?
+  durationSeconds Int           @default(30)
+
+  status         VideoJobStatus @default(queued)
+  progress       Int            @default(0)
+  providerJobId  String?
+  resultUrl      String?
+  thumbnailUrl   String?
+  error          String?
+
+  createdAt      DateTime       @default(now())
+  updatedAt      DateTime       @updatedAt
+}
