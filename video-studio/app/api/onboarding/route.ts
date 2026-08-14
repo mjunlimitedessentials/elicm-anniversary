@@ -7,13 +7,9 @@ export async function POST(req: Request) {
   if (!user) return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
 
   const body = await req.json();
-  const { quizAnswers, ministryName, ministrySize, brandColor, plan, completed } = body as {
+  const { quizAnswers, plan } = body as {
     quizAnswers?: Record<string, string[]>;
-    ministryName?: string;
-    ministrySize?: string;
-    brandColor?: string;
     plan?: string;
-    completed?: boolean;
   };
 
   const existing = await db.onboardingResponse.findUnique({ where: { userId: user.id } });
@@ -23,19 +19,11 @@ export async function POST(req: Request) {
     create: {
       userId: user.id,
       quizAnswers: quizAnswers ?? {},
-      ministryName,
-      ministrySize,
-      brandColor,
       plan,
-      completedAt: completed ? new Date() : null,
     },
     update: {
       quizAnswers: quizAnswers ?? existing?.quizAnswers ?? {},
-      ...(ministryName !== undefined && { ministryName }),
-      ...(ministrySize !== undefined && { ministrySize }),
-      ...(brandColor !== undefined && { brandColor }),
       ...(plan !== undefined && { plan }),
-      ...(completed && { completedAt: new Date() }),
     },
   });
 

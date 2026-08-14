@@ -18,25 +18,23 @@ model User {
 }
 
 model OnboardingResponse {
-  id                String   @id @default(cuid())
-  userId            String   @unique
-  user              User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  id                  String    @id @default(cuid())
+  userId              String    @unique
+  user                User      @relation(fields: [userId], references: [id], onDelete: Cascade)
 
   // Step 2: "Pick your focus" quiz answers, keyed by question id.
   // Stored as JSON so the question set can evolve without a migration.
-  quizAnswers       Json
+  quizAnswers         Json
 
-  // Step 3: ministry / brand profile
-  ministryName      String?
-  ministrySize      String?
-  brandColor        String?
+  // Step 3: chosen plan id (e.g. "lite")
+  plan                String?
 
-  // Step 4: plan
-  plan              String?
+  // Step 4: set once checkout succeeds
+  checkoutCompletedAt DateTime?
 
-  completedAt       DateTime?
-  createdAt         DateTime @default(now())
-  updatedAt         DateTime @updatedAt
+  completedAt         DateTime?
+  createdAt           DateTime  @default(now())
+  updatedAt           DateTime  @updatedAt
 }
 
 enum VideoJobStatus {
