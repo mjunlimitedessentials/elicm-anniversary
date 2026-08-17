@@ -29,3 +29,10 @@ export const PLANS: Plan[] = [
 ];
 
 export const DEFAULT_PLAN_ID = "lite";
+
+// Illustrative only — the reference plan card advertises "~8 Kling 1080p
+// videos" from 1,000 credits, so a flat estimate is used to drive the
+// dashboard's credits-remaining meter without a real cost model.
+export const CREDITS_PER_VIDEO = Math.round(
+  PLANS[0].credits / 8,
+);

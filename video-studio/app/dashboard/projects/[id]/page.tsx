@@ -13,16 +13,14 @@ export default async function ProjectPage({ params }: { params: { id: string } }
   if (!job) notFound();
 
   return (
-    <main className="min-h-screen bg-background px-6 py-10">
-      <div className="mx-auto max-w-lg">
-        <Link href="/dashboard" className="flex items-center gap-1 text-sm text-gray-400 hover:text-white">
-          <ChevronLeft className="h-4 w-4" /> Back to projects
-        </Link>
-        <h1 className="mt-6 text-2xl font-extrabold">Project</h1>
-        <div className="mt-6">
-          <VideoStatusCard initialJob={job} />
-        </div>
+    <div className="mx-auto max-w-lg">
+      <Link href="/dashboard" className="flex items-center gap-1 text-sm text-gray-400 hover:text-white">
+        <ChevronLeft className="h-4 w-4" /> Back to projects
+      </Link>
+      <h1 className="mt-6 text-2xl font-extrabold">Project</h1>
+      <div className="mt-6">
+        <VideoStatusCard initialJob={job} />
       </div>
-    </main>
+    </div>
   );
 }

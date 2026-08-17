@@ -2,16 +2,7 @@
 
 import { Check } from "lucide-react";
 import type { QuizOption } from "@/lib/onboarding-questions";
-
-// Deterministic placeholder gradient per option, so cards look distinct
-// without shipping stock photography. Replace with real imagery by setting
-// option.imageUrl.
-function gradientFor(id: string) {
-  let hash = 0;
-  for (const char of id) hash = (hash * 31 + char.charCodeAt(0)) % 360;
-  const hue2 = (hash + 55) % 360;
-  return `linear-gradient(135deg, hsl(${hash} 45% 18%), hsl(${hue2} 55% 10%))`;
-}
+import { gradientFor } from "@/lib/gradient";
 
 export function QuizImageCard({
   option,

@@ -2,14 +2,7 @@
 
 import { useEffect, useState } from "react";
 import type { VideoJob } from "@prisma/client";
-
-const STATUS_LABEL: Record<string, string> = {
-  queued: "Queued",
-  generating: "Generating script & scenes",
-  rendering: "Rendering final video",
-  completed: "Ready",
-  failed: "Failed",
-};
+import { StatusBadge } from "./status-badge";
 
 export function VideoStatusCard({ initialJob }: { initialJob: VideoJob }) {
   const [job, setJob] = useState(initialJob);
@@ -29,9 +22,7 @@ export function VideoStatusCard({ initialJob }: { initialJob: VideoJob }) {
     <div className="rounded-2xl border border-border bg-surface p-6">
       <div className="flex items-center justify-between text-xs font-semibold uppercase tracking-wide text-gray-500">
         <span>{job.contentType.replace("-", " ")}</span>
-        <span className={job.status === "completed" ? "text-gold" : "text-gray-400"}>
-          {STATUS_LABEL[job.status]}
-        </span>
+        <StatusBadge status={job.status} />
       </div>
 
       <p className="mt-3 text-gray-200">{job.prompt}</p>
