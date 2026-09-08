@@ -5,19 +5,68 @@
       "id": 1,
       "prompt": "I run a small church, ELICM, and our 16th anniversary celebration is Oct 18 with a free dinner and guest speaker. Registration page is https://elicm-anniversary.example.com. We want Facebook ads to get people in our city (mostly families and older adults within 15 miles) to register. Budget is about $15/day for 3 weeks. Give me everything I need to run the ads.",
       "expected_output": "A complete copy-paste ad pack: 3+ angles of single-image ads with primary text/headline/description/CTA and creative briefs, a carousel, at least one short video script with shot list, campaign structure with budget, launch checklist, and a review from the expert panel. Should be respectful of religion-related targeting/policy limits.",
-      "files": []
+      "files": [],
+      "expectations": [
+        "Contains at least 3 distinct single-image ads each with primary text, headline, description/CTA button",
+        "Contains a carousel with every card's image concept and headline written out",
+        "Contains at least 2 video scripts laid out with timing, visual, and spoken line (filmable shot table)",
+        "Each ad has a creative brief specifying format/aspect ratio (e.g. 4:5, 9:16) and on-image text",
+        "Includes campaign structure: objective, audience/location settings, budget, and schedule",
+        "Includes a success metric plus explicit kill/scale rules (when to pause, when to raise budget)",
+        "Ads use at least 3 structurally different hook families (e.g. callout, story, proof, contrarian, question) rather than rewordings",
+        "Includes a landing page message-match or ad-scent check",
+        "No copy uses second-person diagnosis of a personal attribute (health, religion, age, financial status) in a way Meta would reject",
+        "Includes a review/critique pass showing what was changed (expert panel or equivalent)",
+        "No placeholder text like [insert], TBD, or lorem ipsum in ad copy fields",
+        "Copy states the event is free and names Oct 18 in headline or first 125 chars of at least one ad",
+        "Campaign plan phases the 3 weeks (announce / remind / last call) rather than flat spend",
+        "Targeting recommendation uses geography rather than religion as a targeting attribute"
+      ]
     },
     {
       "id": 2,
       "prompt": "im a personal trainer in Tampa, 1:1 and small group. want to run fb ads for a 6-week transformation challenge, $297, starts in 2 weeks, 12 spots. i have before/after photos and 30ish 5-star google reviews. never run ads before. write me the ads and tell me what images/videos to make",
       "expected_output": "Ad pack with offer sharpened (Hormozi value equation / guarantee / scarcity used honestly), multiple angles, video script(s) the trainer can film on a phone, carousel, creative specs; must flag that before/after photos and body-shaming/personal-attribute language violate Meta policy and give compliant alternatives; campaign structure for a beginner.",
-      "files": []
+      "files": [],
+      "expectations": [
+        "Contains at least 3 distinct single-image ads each with primary text, headline, description/CTA button",
+        "Contains a carousel with every card's image concept and headline written out",
+        "Contains at least 2 video scripts laid out with timing, visual, and spoken line (filmable shot table)",
+        "Each ad has a creative brief specifying format/aspect ratio (e.g. 4:5, 9:16) and on-image text",
+        "Includes campaign structure: objective, audience/location settings, budget, and schedule",
+        "Includes a success metric plus explicit kill/scale rules (when to pause, when to raise budget)",
+        "Ads use at least 3 structurally different hook families (e.g. callout, story, proof, contrarian, question) rather than rewordings",
+        "Includes a landing page message-match or ad-scent check",
+        "No copy uses second-person diagnosis of a personal attribute (health, religion, age, financial status) in a way Meta would reject",
+        "Includes a review/critique pass showing what was changed (expert panel or equivalent)",
+        "No placeholder text like [insert], TBD, or lorem ipsum in ad copy fields",
+        "Flags before/after photo policy risk and provides a compliant alternative",
+        "Scarcity uses the true 12 spots and start date rather than invented urgency",
+        "Includes a guarantee or risk-reversal element in the offer/ads"
+      ]
     },
     {
       "id": 3,
-      "prompt": "We sell a $49 ergonomic laptop stand on Shopify (brand: Liftly). Cold-traffic ads have been getting 0.6% CTR and $38 CPA and we need CPA under $20. Here's our current ad: 'Liftly Laptop Stand — Premium aluminum, adjustable height, free shipping. Shop now.' Fix our ads.",
+      "prompt": "We sell a $49 ergonomic laptop stand on Shopify (brand: Liftly). Cold-traffic ads have been getting 0.6% CTR and $38 CPA and we need CPA under $20. Here's our current ad: 'Liftly Laptop Stand \u2014 Premium aluminum, adjustable height, free shipping. Shop now.' Fix our ads.",
       "expected_output": "Diagnosis of why the current ad is weak (feature-led, no hook, no avatar callout), then a rebuilt ad pack with multiple problem-aware angles (neck pain, WFH posture, desk aesthetics), UGC-style video scripts, static image concepts with on-image text, carousel, testing plan (creative diversification, kill/scale rules) and target metrics.",
-      "files": []
+      "files": [],
+      "expectations": [
+        "Contains at least 3 distinct single-image ads each with primary text, headline, description/CTA button",
+        "Contains a carousel with every card's image concept and headline written out",
+        "Contains at least 2 video scripts laid out with timing, visual, and spoken line (filmable shot table)",
+        "Each ad has a creative brief specifying format/aspect ratio (e.g. 4:5, 9:16) and on-image text",
+        "Includes campaign structure: objective, audience/location settings, budget, and schedule",
+        "Includes a success metric plus explicit kill/scale rules (when to pause, when to raise budget)",
+        "Ads use at least 3 structurally different hook families (e.g. callout, story, proof, contrarian, question) rather than rewordings",
+        "Includes a landing page message-match or ad-scent check",
+        "No copy uses second-person diagnosis of a personal attribute (health, religion, age, financial status) in a way Meta would reject",
+        "Includes a review/critique pass showing what was changed (expert panel or equivalent)",
+        "No placeholder text like [insert], TBD, or lorem ipsum in ad copy fields",
+        "Diagnoses why the original feature-led ad underperforms",
+        "Includes at least one problem-aware angle (e.g. neck/shoulder pain, posture, WFH) rather than only product features",
+        "Includes a UGC-style or native/ugly video or image variant",
+        "Gives a testing plan with concrete numbers (ads per ad set, days before judging)"
+      ]
     }
   ]
 }
