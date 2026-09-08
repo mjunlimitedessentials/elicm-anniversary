@@ -1,18 +1,16 @@
 ---
 name: facebook-ads
 description: >-
-  Writes complete, copy-paste-ready Facebook and Instagram (Meta) ad campaigns and builds the
-  creative to go with them: primary text, headlines, descriptions, CTA buttons, single-image
-  designs with on-image text and build steps, carousels card by card, and phone-filmable video
-  scripts with shot lists, plus campaign structure, budget, testing rules, and a launch checklist.
-  Every pack is written through and reviewed by a panel of top practitioners (Molly Pittman,
-  Alex Hormozi, Rudy Mawer, Allie Bloyd, Barry Hott, Dara Denney, Nick Theriot, Savannah Sanchez,
-  Sarah Levinger, Ben Heath, Jon Loomer, Charley Tichenor, Andrew Foxwell, Depesh Mandalia).
-  Use this skill whenever the user mentions Facebook ads, Instagram ads, Meta ads, Ads Manager,
-  boosting a post, promoting an event, product, service, church, class, launch or offer on
-  social, ad copy, ad creative, carousel ads, video ad scripts, UGC scripts, retargeting, or asks
-  why their ads aren't working, even if they don't say "Facebook" or "ads" explicitly. Also use
-  it for improving, auditing, or rewriting existing ads and for planning ad budgets and tests.
+  Writes complete, copy-paste-ready Facebook/Instagram (Meta) ad campaigns and the creative to go
+  with them: primary text, headlines, CTA buttons, single-image designs with on-image text and
+  build steps, carousels card by card, phone-filmable video scripts, plus campaign structure,
+  budget, testing rules and a launch checklist, all reviewed by a panel of top practitioners
+  (Molly Pittman, Alex Hormozi, Rudy Mawer, Allie Bloyd, Barry Hott, Dara Denney, Nick Theriot,
+  Savannah Sanchez, Sarah Levinger and others). Use whenever the user mentions Facebook, Instagram
+  or Meta ads, Ads Manager, boosting a post, promoting an event, product, service, church, class,
+  launch or offer on social, ad copy, ad creative, carousels, video ad or UGC scripts, retargeting,
+  or asks why their ads aren't working, even without saying "Facebook" or "ads". Also for
+  auditing or rewriting existing ads and planning ad budgets and tests.
 ---
 
 # Facebook Ads
@@ -111,8 +109,13 @@ then record lens / verdict / fix applied in the panel table. Offer problems outr
 problems outrank creative problems. This is a real editing pass, not decoration; a pack whose
 panel table is all "pass" on the first try was not reviewed hard enough.
 
-### 8. Deliver
-Write the file, then reply with: where the file is, the angle list in one line each, the two
+### 8. Lint, then deliver
+Run `python3 scripts/check_pack.py ads/{campaign-slug}-ad-pack.md` and fix every line it reports,
+then run it again until it prints OK. It catches what reviewers keep finding in otherwise good
+packs: tokens missing from the table, editor notes left inside copy blocks, headlines and
+descriptions over the limit once tokens are filled, second-person attribute phrasing in video
+lines and alternate hooks, two ads opening with the same sentence, copy that says "Tap Sign Up"
+under a "Learn More" button, and weekdays that don't match their dates. Then reply with: where the file is, the angle list in one line each, the two
 or three assumptions that most affect results, and what to film or photograph this week. Keep
 the reply short; the pack is the product.
 
@@ -126,11 +129,22 @@ the reply short; the pack is the product.
   unprovable claims, no fake urgency.
 - Specificity test: every ad has at least one number, one date or place, and one real phrase.
 - Honesty test: every number in copy is either from the brief, a token, or a true statement
-  without a number. Urgency and scarcity name the real constraint.
+  without a number. Urgency and scarcity name the real constraint. This includes anecdotes in
+  UGC and native scripts ("got asked about it three times this week"): write those lines as
+  direction to the real person ("say, in your words, the last time someone asked about it") or
+  as tokens, never as invented testimony.
+- Money test: the target cost per lead or sale is derived in the summary from price × close
+  rate × margin, and the kill/scale thresholds come from that number. Scale triggers are
+  conditional on results ("if CPR ≤ $6 after 4 days, +20%"), never just calendar dates.
+- Budget-read test: each ad needs roughly $30 of spend before you can judge it, so the number
+  of ads live at once is at most (daily budget × days to first decision) ÷ 30. On $15/day with
+  a day-7 decision that's 3–4 ads, not 8; hold the rest as the refresh set for week two.
+- Button test: the CTA verb in the copy matches the CTA button on that ad.
 - Paste-order test: the top of the pack tells the user which 5–8 ads to upload first if they only
   have an hour, so a long pack doesn't stall a beginner.
 
 ## Files
+- `scripts/check_pack.py` — lint the finished pack; run until clean before delivering
 - `assets/campaign-brief-template.md` — the intake shape; fill it silently from context
 - `assets/deliverable-template.md` — the exact layout of the ad pack
 - `references/offer-and-avatar.md` — avatar questions, Before/After grid, Value Equation, Grand Slam, MAGIC, temperature matching, lead magnets

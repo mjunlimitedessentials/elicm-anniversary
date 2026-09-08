@@ -18,6 +18,8 @@
 - Winning angle hypothesis (why this will work, in two sentences):
 - Angles tested in this pack (one line each):
 - Campaign structure recommendation (campaign → ad set → ads, budget, audience):
+- Money: price × close rate × margin → target cost per result → kill/scale thresholds:
+- Ads live at launch vs held for week-two refresh (budget-read rule):
 - Landing page must match: (headline / promise / first-screen visual)
 
 ## 1. Angle A — {angle name}  ({format})
@@ -28,10 +30,10 @@
 {Full text. First 125 characters carry the hook; the rest is optional depth.}
 
 ### Headline (≤ 40 chars)
-{...}
+{plain text on its own line, no notes}
 
 ### Description (≤ 30 chars, optional)
-{...}
+{plain text on its own line, no notes}
 
 ### CTA button
 {Learn More / Sign Up / Shop Now / Get Offer / Book Now / Download}
