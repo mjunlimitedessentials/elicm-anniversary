@@ -1,0 +1,23 @@
+{
+  "skill_name": "facebook-ads",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "I run a small church, ELICM, and our 16th anniversary celebration is Oct 18 with a free dinner and guest speaker. Registration page is https://elicm-anniversary.example.com. We want Facebook ads to get people in our city (mostly families and older adults within 15 miles) to register. Budget is about $15/day for 3 weeks. Give me everything I need to run the ads.",
+      "expected_output": "A complete copy-paste ad pack: 3+ angles of single-image ads with primary text/headline/description/CTA and creative briefs, a carousel, at least one short video script with shot list, campaign structure with budget, launch checklist, and a review from the expert panel. Should be respectful of religion-related targeting/policy limits.",
+      "files": []
+    },
+    {
+      "id": 2,
+      "prompt": "im a personal trainer in Tampa, 1:1 and small group. want to run fb ads for a 6-week transformation challenge, $297, starts in 2 weeks, 12 spots. i have before/after photos and 30ish 5-star google reviews. never run ads before. write me the ads and tell me what images/videos to make",
+      "expected_output": "Ad pack with offer sharpened (Hormozi value equation / guarantee / scarcity used honestly), multiple angles, video script(s) the trainer can film on a phone, carousel, creative specs; must flag that before/after photos and body-shaming/personal-attribute language violate Meta policy and give compliant alternatives; campaign structure for a beginner.",
+      "files": []
+    },
+    {
+      "id": 3,
+      "prompt": "We sell a $49 ergonomic laptop stand on Shopify (brand: Liftly). Cold-traffic ads have been getting 0.6% CTR and $38 CPA and we need CPA under $20. Here's our current ad: 'Liftly Laptop Stand — Premium aluminum, adjustable height, free shipping. Shop now.' Fix our ads.",
+      "expected_output": "Diagnosis of why the current ad is weak (feature-led, no hook, no avatar callout), then a rebuilt ad pack with multiple problem-aware angles (neck pain, WFH posture, desk aesthetics), UGC-style video scripts, static image concepts with on-image text, carousel, testing plan (creative diversification, kill/scale rules) and target metrics.",
+      "files": []
+    }
+  ]
+}
