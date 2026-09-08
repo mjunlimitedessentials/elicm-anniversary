@@ -73,6 +73,9 @@ Hook rate and CTR are diagnostics; the only success metric is cost per the thing
 | Fake urgency, fake countdowns | misleading | true deadlines with the reason |
 | Alcohol, dating, credit, housing, employment, politics | special ad categories / age gates | declare the category; targeting shrinks; write accordingly |
 | Faith-based events | not restricted, but avoid targeting by religion as an attribute | target geography + interests (community events, family activities); copy can be openly faith-based |
+Run this table against every text field, including video spoken lines, on-screen captions,
+on-image text, and carousel cards; the primary text is usually the cleanest field and the
+video script the dirtiest.
 If the user's brief contains a violating element, don't silently drop it: flag it in the strategy summary, explain the rule in one line, and give the compliant version.
 
 ## 7. Naming convention

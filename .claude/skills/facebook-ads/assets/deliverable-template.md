@@ -5,6 +5,14 @@
 > into Ads Manager.
 
 ## 0. Strategy summary (read once)
+### 0.0 Find-and-replace tokens (the only things you must fill in)
+| Token | Replace with |
+|-------|--------------|
+| `[CITY]` | |
+
+### 0.1 If you only have an hour: paste these first
+1. Angle A (static) 2. Angle B (native) 3. Carousel 4. Video 1 ... (5–8 items, in order)
+
 - Avatar:
 - Temperature & objective:
 - Winning angle hypothesis (why this will work, in two sentences):
@@ -64,6 +72,8 @@ Thumbnail / cover frame:
 Primary text + headline for the video ad:
 
 ## 5. Launch checklist
+- First-time setup (only if the user is new to ads): Page + Business Manager, Pixel/CAPI or Instant Form, domain verification, payment method, conversion event
+- Lead follow-up templates (lead campaigns): 3 texts/DMs for the first 24 hours
 - Campaign objective & conversion event:
 - Ad set: audience, placements, budget, schedule:
 - Landing page message-match check:

@@ -50,6 +50,19 @@ If the user pastes reviews, comments, DMs, or a website, mine them: quote five r
 build hooks from them. If a URL is given and you have a fetch tool, read the landing page so the
 ads match it.
 
+Facts you don't have fall into two kinds, and the pack treats them differently:
+- **Facts only the user knows** (address, pastor's name, exact review count, start time): use a
+  short, consistent token set like `[CITY]`, `[REVIEW COUNT]`, listed once in a find-and-replace
+  table at the top of the pack. Never mix styles ("[insert]", "TBD", "[confirm]").
+- **Proof you'd be inventing** (completion rates, review scores, years in business, customer
+  counts): don't put a made-up number in copy, even flagged. Either use a token, or write the
+  line so it's true without the number ("most of last round finished all six weeks" → token
+  `[FINISHERS] of [ENROLLED]`). A user who pastes an invented "31 reviews" into Ads Manager gets a
+  policy strike or a credibility hit, and they won't notice the footnote.
+- **Dates**: when you write a weekday next to a date, compute it (`python3 -c "import datetime;
+  print(datetime.date(2026,10,18).strftime('%A')")`). A wrong weekday in a live ad is the kind of
+  mistake that gets the whole account distrusted.
+
 ### 2. Do the offer and avatar work (read `references/offer-and-avatar.md`)
 Fill the 10 avatar questions and the Before/After grid. Run the Value Equation and Grand Slam
 pass on the offer. If the offer is a commodity, write the sharpened version and build the pack
@@ -82,7 +95,15 @@ can rebuild or hand it off.
 Pick the recipe for their budget. Write objective, ad sets, audience settings, budget split,
 schedule, phases for dated events, success metric, day-4/day-7 rules, and the fatigue
 diagnostic. Check every ad against the policy table and rewrite anything that would be
-rejected, explaining the rule in one line in the summary.
+rejected, explaining the rule in one line in the summary. The sweep covers *every* text field:
+primary text, headline, description, on-image text, carousel cards, and each spoken line and
+on-screen caption in the video tables. Video scripts are where "your neck hurts" and "are you
+over 50" sneak back in because they feel conversational; the policy applies to them identically.
+If the user has never run ads before (they say so, or the brief reads that way), add a short
+first-time setup section to the launch checklist: Business Manager/Page, Pixel or Conversions
+API on the destination (or an Instant Form fallback), domain verification, payment method, and
+the conversion event to select. For lead campaigns, include 3 follow-up text/DM templates for
+the first 24 hours; a lead nobody replies to is a wasted ad.
 
 ### 7. Run the panel (read `references/expert-panel.md`)
 Ask each expert's review question of the whole pack. Where the answer is "fix," change the ad,
@@ -104,6 +125,10 @@ the reply short; the pack is the product.
 - Policy test: no second-person diagnosis of a personal attribute, no body before/afters, no
   unprovable claims, no fake urgency.
 - Specificity test: every ad has at least one number, one date or place, and one real phrase.
+- Honesty test: every number in copy is either from the brief, a token, or a true statement
+  without a number. Urgency and scarcity name the real constraint.
+- Paste-order test: the top of the pack tells the user which 5–8 ads to upload first if they only
+  have an hour, so a long pack doesn't stall a beginner.
 
 ## Files
 - `assets/campaign-brief-template.md` — the intake shape; fill it silently from context
